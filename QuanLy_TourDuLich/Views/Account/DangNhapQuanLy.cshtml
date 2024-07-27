@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Đăng nhập quản lý";
+}
+
+<div class="container">
+    <h2>Đăng nhập quản lý</h2>
+    <form method="post" action="@Url.Action("DangNhapQuanLy","Account")">
+        <div>
+            <label class="form-label">Email hoặc số điện thoại *</label>
+            <input class="form-control" type="text" name="TenDangNhap" />
+        </div>
+        <div>
+            <label class="form-label">Mật khẩu *</label>
+            <input class="form-control" type="password" name="MatKhau" />
+        </div>
+        @if (ViewBag.LoginQL != null)
+        {
+            <div class="alert alert-danger mt-3">
+                @ViewBag.LoginQL
+            </div>}
+        <input type="submit" class="btn btn-success" value="Đăng nhập" />
+
+    </form>
+</div>
+
+

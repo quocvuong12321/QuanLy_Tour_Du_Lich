@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QuanLy_TourDuLich" Class="QuanLyTourDuLichDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-86N3SME\SQLEXPRESS;Initial Catalog=QuanLy_TourDuLich;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QuanLy_TourDuLichConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QuanLy_Tour_Du_Lich" Class="QuanLyTourDuLichDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-86N3SME\SQLEXPRESS;Initial Catalog=QuanLy_Tour_Du_Lich;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QuanLy_Tour_Du_LichConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.ChiTiet_DatTour" Member="ChiTiet_DatTours">
     <Type Name="ChiTiet_DatTour">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -22,17 +22,6 @@
       <Association Name="Tour_DanhGia" Member="Tour" ThisKey="Tour_id" OtherKey="id" Type="Tour" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.DatTour" Member="DatTours">
-    <Type Name="DatTour">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="GhiChu" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="TrangThai" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="User_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="DatTour_ChiTiet_DatTour" Member="ChiTiet_DatTours" ThisKey="id" OtherKey="DatTour_id" Type="ChiTiet_DatTour" />
-      <Association Name="DatTour_ThanhToan" Member="ThanhToans" ThisKey="id" OtherKey="DatTour_id" Type="ThanhToan" />
-      <Association Name="KhachHang_DatTour" Member="KhachHang" ThisKey="User_id" OtherKey="id" Type="KhachHang" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Feedback" Member="Feedbacks">
     <Type Name="Feedback">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -41,12 +30,16 @@
       <Column Name="NgayPhanHoi" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Image_Tour" Member="Image_Tours">
-    <Type Name="Image_Tour">
+  <Table Name="dbo.DatTour" Member="DatTours">
+    <Type Name="DatTour">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Tour_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Tour_Image_Tour" Member="Tour" ThisKey="Tour_id" OtherKey="id" Type="Tour" IsForeignKey="true" />
+      <Column Name="GhiChu" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="id_TrangThai" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="User_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="DatTour_ChiTiet_DatTour" Member="ChiTiet_DatTours" ThisKey="id" OtherKey="DatTour_id" Type="ChiTiet_DatTour" />
+      <Association Name="DatTour_ThanhToan" Member="ThanhToans" ThisKey="id" OtherKey="DatTour_id" Type="ThanhToan" />
+      <Association Name="KhachHang_DatTour" Member="KhachHang" ThisKey="User_id" OtherKey="id" Type="KhachHang" IsForeignKey="true" />
+      <Association Name="TrangThai_DatTour" Member="TrangThai" ThisKey="id_TrangThai" OtherKey="id_TrangThai" Type="TrangThai" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.HuongDanVien" Member="HuongDanViens">
@@ -58,6 +51,14 @@
       <Column Name="DienThoai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="GioiTinh" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Association Name="HuongDanVien_PhanCong_HuongDanVien" Member="PhanCong_HuongDanViens" ThisKey="id" OtherKey="HuongDanVien_id" Type="PhanCong_HuongDanVien" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Image_Tour" Member="Image_Tours">
+    <Type Name="Image_Tour">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Tour_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Tour_Image_Tour" Member="Tour" ThisKey="Tour_id" OtherKey="id" Type="Tour" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.KhachHang" Member="KhachHangs">
@@ -101,14 +102,13 @@
   <Table Name="dbo.Tour" Member="Tours">
     <Type Name="Tour">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Gia" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TieuDe" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TieuDe" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="MoTa" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="LichTrinh" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="DiemKhoiHanh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="DiemDen" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="TrangThai" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DiemKhoiHanh" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="DiemDen" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="NgayKhoiHanh" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="NgayKetThuc" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="SoLuongCon" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -127,6 +127,13 @@
       <Column Name="NgayThanhToan" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="TongTien" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="DatTour_ThanhToan" Member="DatTour" ThisKey="DatTour_id" OtherKey="id" Type="DatTour" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrangThai" Member="TrangThais">
+    <Type Name="TrangThai">
+      <Column Name="id_TrangThai" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenTrangThai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="TrangThai_DatTour" Member="DatTours" ThisKey="id_TrangThai" OtherKey="id_TrangThai" Type="DatTour" />
     </Type>
   </Table>
 </Database>
