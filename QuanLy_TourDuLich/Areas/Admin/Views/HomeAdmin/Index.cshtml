@@ -1,8 +1,208 @@
-﻿
+﻿@*@model IEnumerable<QuanLy_TourDuLich.Models.Tour>
+
+
+
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+    }
+    @helper Truncate(string input, int length)
+    {
+        if (input.Length < length)
+        {
+            @input
+        }
+        else
+        {
+            @input.Substring(0, length)<text>...</text>
+        }
+    }
+    <div class="container">
+        <h2>Index</h2>
+
+        <p>
+            @Html.ActionLink("Thêm mới", "ThemmoiTour")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Tên tour
+                </th>
+                <th>
+                    Giá
+                </th>
+                <th>
+                    Tiêu đề
+                </th>
+                <th>
+                    Mô tả
+                </th>
+                <th>
+                    Lịch trình
+                </th>
+                <th>
+                    Điểm khởi hành
+                </th>
+                <th>
+                    Điểm đến
+                </th>
+                <th>
+                    Ngày khởi hành
+                </th>
+                <th>
+                    Ngày kết thúc
+                </th>
+                <th>
+                    Số lượng còn
+                </th>
+                <th>
+                    Loại tour
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TieuDe)
+                    </td>
+                    <td>
+                        @Truncate(item.MoTa, 100)
+                    </td>
+                    <td>
+                        @Truncate(item.LichTrinh, 100)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiemKhoiHanh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiemDen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayKhoiHanh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayKetThuc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoLuongCon)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Loai_Tour.Name)
+                    </td>
+                    <td>
+                        @if (item.Image_Tours != null && item.Image_Tours.Any())
+                        {
+                            foreach (var image in item.Image_Tours)
+                            {
+                                <div>
+                                    <img src="@Url.Content("~/img/" + image.Name)" alt="@image.Name" style="width:100px; height:auto;" />
+                                    <p>@image.Name</p>
+                                </div> }
+                        }
+                        else
+                        {
+                            <p>No images available</p>}
+                    </td>
+                    <td>
+                        @Html.ActionLink("Sửa", "EditTour", new { id = item.id })|
+                        @Html.ActionLink("Chi tiết", "DetailTour", new { id = item.id })|
+                        @Html.ActionLink("Xóa", "DeleteTour", new { id = item.id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>*@
+@model IEnumerable<QuanLy_TourDuLich.Models.TourWithImagesViewModel>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
 }
 
-<h2>Đây là trang của admin</h2>
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text>...</text>
+    }
+}
 
+<div class="container">
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Thêm mới", "ThemmoiTour")
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tên tour</th>
+                <th>Giá</th>
+                <th>Tiêu đề</th>
+                <th>Mô tả</th>
+                <th>Lịch trình</th>
+                <th>Điểm khởi hành</th>
+                <th>Điểm đến</th>
+                <th>Ngày khởi hành</th>
+                <th>Ngày kết thúc</th>
+                <th>Số lượng còn</th>
+                <th>Loại tour</th>
+                <th>Hình ảnh</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Tour.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Tour.Gia)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Tour.TieuDe)</td>
+                    <td>@Truncate(item.Tour.MoTa, 100)</td>
+                    <td>@Truncate(item.Tour.LichTrinh, 100)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Tour.DiemKhoiHanh)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Tour.DiemDen)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Tour.NgayKhoiHanh)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Tour.NgayKetThuc)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Tour.SoLuongCon)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Tour.Loai_Tour.Name)</td>
+                    <td>
+                        @if (item.Images != null && item.Images.Any())
+                        {
+                            foreach (var image in item.Images)
+                            {
+                                <div>
+                                    <img src="@Url.Content("~/img/" + image.Name)" alt="@image.Name" style="width:100px; height:auto;" />
+                                    <p>@image.Name</p>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <p>No images available</p>
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Sửa", "EditTour", new { id = item.Tour.id }) |
+                        @Html.ActionLink("Chi tiết", "DetailTour", new { id = item.Tour.id }) |
+                        @Html.ActionLink("Xóa", "DeleteTour", new { id = item.Tour.id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
