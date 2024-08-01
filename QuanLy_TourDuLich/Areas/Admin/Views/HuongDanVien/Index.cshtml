@@ -1,0 +1,68 @@
+﻿@model IEnumerable<QuanLy_TourDuLich.Models.HuongDanVien>
+
+@{
+    ViewBag.Title = "Quản lý hướng dẫn Viên";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2>Quản lý hướng dẫn viên</h2>
+
+<p>
+    @Html.ActionLink("Thêm HDV mới", "ThemHuongDanVien")
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                <label>Họ và tên</label>
+            </th>
+            <th>
+                <label>Email</label>
+            </th>
+            <th>
+                <label>Địa chỉ</label>
+            </th>
+            <th>
+                <label>Số điện thoại</label>
+            </th>
+            <th>
+                <label>Giới tính</label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fullname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaChi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DienThoai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GioiTinh)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Sua", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    <a class="" style="cursor:pointer" onclick="xoa(@item.id)">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    var xoa = function (id) {
+        if (confirm("Bạn có chắc chắn muốn xóa không?")) {
+            location.href = "HuongDanVien/XoaHDV/" + id
+        }
+    }
+</script>

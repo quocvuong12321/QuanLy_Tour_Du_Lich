@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Tourist Management</title>
+    <title>@ViewBag.Title</title>
+    <link href="~/img/favicon.png" rel="icon">
+
     <link href="~/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -14,9 +16,11 @@
             background-color: #343a40;
             padding: 10px 20px;
             display: flex;
+            position: fixed;
             justify-content: space-between;
             align-items: center;
             color: white;
+            width: 100%;
         }
 
         .sidebar {
@@ -39,7 +43,7 @@
                 }
 
         .main-content {
-            margin-left: 250px;
+            margin: 60px 0 35px 250px;
             padding: 20px;
         }
 
@@ -47,9 +51,9 @@
             background-color: #343a40;
             color: white;
             text-align: center;
-            padding: 10px;
+            padding: 0px;
             position: fixed;
-            bottom: 0;
+            bottom: 0px;
             width: 100%;
             left: 0;
         }
@@ -141,9 +145,9 @@
     </header>
     <!-- Sidebar -->
     <div class="d-flex">
-        <div class="sidebar">
-            <a href="#dashboard">Dashboard</a>
-            <a href="#tours">Manage Tours</a>
+        <div class="sidebar col-md-2">
+            <a href="~/Admin/HuongDanVien/Index">Quản lý Hướng dẫn viên</a>
+            <a href="~/Admin/HomeAdmin/Index">Quản lý tour</a>
             <a href="#bookings">Manage Bookings</a>
             <a href="#users">Manage Users</a>
             <a href="#reports">Reports</a>
@@ -151,14 +155,16 @@
             <a href="#logout">Logout</a>
         </div>
         <!-- Main Content -->
-        <div class="main-content">
+        <div class="main-content col-md-10">
                 @RenderBody()
             </div>
         </div>
-    </div>
     <!-- Footer -->
     <div class="footer">
         <p>&copy; Quản Lý Du Lịch</p>
     </div>
+    <script src="~/plugin/ckeditor/ckeditor.js"></script>
+    @RenderSection("TourJS", false)
+    @RenderSection("script", false);
 </body>
 </html>

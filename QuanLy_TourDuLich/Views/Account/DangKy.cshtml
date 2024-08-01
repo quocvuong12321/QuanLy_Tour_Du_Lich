@@ -1,24 +1,22 @@
 ﻿@model QuanLy_TourDuLich.Models.KhachHang
 
 @{
-    ViewBag.Title = "DangKy";
+    ViewBag.Title = "Đăng ký";
 }
 
 
-<div class="container">
+<div class="container col-5">
     <h2>Đăng ký tài khoản</h2>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>KhachHang</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                <label class="control-label col-md-2">Vai trò</label>
                 <div class="col-md-10">
-                    <input type="number" name="Role_id" value="2" class="form-control" />
+                    <input type="number" name="Role_id" value="2" class="form-control" hidden />
                     @Html.ValidationMessageFor(model => model.Role_id, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -62,7 +60,6 @@
                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                 </div>
             </div>
-
             <div class="form-group">
                 <label class="control-label col-md-2">Giới tính</label>
                 <div class="col-md-10">
@@ -74,7 +71,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-success" />
+                    <input type="submit" value="Đăng ký" class="btn btn-success" />
                     @ViewBag.TB
                 </div>
             </div>

@@ -1,0 +1,32 @@
+﻿@model List < QuanLy_TourDuLich.Models.Tour>
+@{
+    ViewBag.Title = "Trang chủ";
+}
+@helper Truncate(string text,int lengh) {
+    if (text.Length <= lengh)
+    {
+        @text
+    }
+    else
+    {
+        @text.Substring(0,lengh)<text></text>
+    }
+    }
+
+<div class="container">
+    @foreach (var item in Model)
+    {
+    <div class="card" style="width:18rem">
+        @Html.Action("AnhChoCard", "Home", new { id = item.id })
+        <div class="card-body ">
+            <a href="" class="nav-link text-center" style="font-size:20px;"><b>@Truncate(item.Name,50)</b></a>
+            <hr />
+            <div style="">
+                <p class="text-body">Khởi hành: @String.Format("{0:dd/MM/yyyy}", item.NgayKhoiHanh)</p>
+                <p class="text-body">Số chỗ còn nhận: @item.SoLuongCon</p>
+                <p class="text-body">@item.DiemKhoiHanh</p>
+            </div>
+        </div>
+    </div>
+    }
+</div>

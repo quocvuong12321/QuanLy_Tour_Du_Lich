@@ -40,7 +40,7 @@
 
 /*** Button ***/
 .btn {
-    font-family:  sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: 600;
     transition: .5s;
 }
@@ -79,7 +79,7 @@
 
 /*** Navbar ***/
 .navbar-light .navbar-nav .nav-link {
-    font-family:  sans-serif;
+    font-family: 'Nunito', sans-serif;
     position: relative;
     margin-right: 25px;
     padding: 35px 0;
@@ -172,7 +172,7 @@
 
 /*** Hero Header ***/
 .hero-header {
-    background: linear-gradient(rgba(20, 20, 31, .7), rgba(20, 20, 31, .7)), url(../img/bg.jpg);
+    background: linear-gradient(rgba(20, 20, 31, .7), rgba(20, 20, 31, .7)), url(../img/bg-hero.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -407,13 +407,13 @@
     transition: .3s;
 }
 
-    .footer .btn.btn-link::before {
-        position: relative;
-        content: "\f0a9";
-        font-family: "FontAwesome" ;
-        font-weight: 900;
-        margin-right: 10px;
-    }
+.footer .btn.btn-link::before {
+    position: relative;
+    content: "\f105";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 10px;
+}
 
 .footer .btn.btn-link:hover {
     letter-spacing: 1px;

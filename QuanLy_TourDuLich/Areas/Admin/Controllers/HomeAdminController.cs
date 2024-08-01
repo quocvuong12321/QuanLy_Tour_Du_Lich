@@ -16,41 +16,49 @@ namespace QuanLy_TourDuLich.Areas.Admin.Controllers
         CSDL_QLTourDataContext data = new CSDL_QLTourDataContext();
         public ActionResult Index()
         {
-            List<Tour> dsTour = data.Tours. ToList();
-            List<Image_Tour> dsImageTour = data.Image_Tours.ToList();
+            List<Tour> dsTour = data.Tours.ToList();
 
-            var tourWithImages = dsTour.Select(t => new TourWithImagesViewModel
-            {
-                Tour = t,
-                Images = dsImageTour.Where(i => i.Tour_id == t.id).ToList()
-            }).ToList();
-
-            return View(tourWithImages);
+            return View(dsTour);
 
         }
 
-        public ActionResult ThemmoiTour()
+
+
+        public ActionResult ThemMoiTour()
         {
-            ViewBag.LoaiTour = new SelectList(data.Loai_Tours.ToList().OrderBy(n => n.Name), "id", "Name");
-            return View();
+            ViewBag.LoaiTour = new SelectList(data.Loai_Tours.ToList().OrderBy(t => t.id), "id", "Name");
+            return View(new Tour());
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult ThemmoiTour(Tour t, IEnumerable<HttpPostedFileBase> fileUpLoad)
+        public ActionResult ThemMoiTour(Tour model)
         {
-            ViewBag.LoaiTour = new SelectList(data.Loai_Tours.ToList().OrderBy(n => n.Name), "id", "Name");
-            if (fileUpLoad  == null || !fileUpLoad.Any() || fileUpLoad.All(f => f == null))
+            if (ModelState.IsValid)
+            {
+                data.Tours.InsertOnSubmit(model);
+                data.SubmitChanges();
+                return RedirectToAction("Index");
+            }
+            return View(model) ;
+        }
+        public ActionResult ThemHinhAnhTour(int id)
+        {
+            return View(id);
+        }
+        [HttpPost]
+        public ActionResult ThemHinhAnhTour(int id, IEnumerable<HttpPostedFileBase> fileUpLoad) 
+            //Thêm hình ảnh cho tour có tour_id == id
+        {
+            var t = data.Tours.FirstOrDefault(a => a.id == id);
+            if (fileUpLoad == null || !fileUpLoad.Any() || fileUpLoad.All(f => f == null))
             {
                 ViewBag.Thongbao = "Vui lòng chọn ít nhất 1 ảnh";
                 return View(t);
-            }    
+            }
             else
             {
-                if(ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
-                    // Thêm tour mới vào cơ sở dữ liệu
-                    data.Tours.InsertOnSubmit(t);
-                    data.SubmitChanges();
                     // Duyệt qua các tệp ảnh được tải lên và lưu trữ chúng
                     foreach (var file in fileUpLoad)
                     {
@@ -78,67 +86,49 @@ namespace QuanLy_TourDuLich.Areas.Admin.Controllers
                     }
                     data.SubmitChanges();
                     return RedirectToAction("Index");
-                    }
                 }
+            }
             return View(t);
         }
-           
-    
-        public ActionResult EditTour(int id)
+
+        public ActionResult ChiTietTour(int id) // Hiển thị chi tiết tour
+        {
+            return View(data.Tours.FirstOrDefault(t => t.id == id));
+        }
+
+        public ActionResult dsAnh(int id) //Lấy ra List hình ảnh của tour có Tour_id == id
+        {
+            return PartialView(data.Image_Tours.Where(t => t.Tour_id == id).ToList());
+        }
+
+        
+        public ActionResult DeleteTour(int id) // Xóa 1 tour 
+        {
+            Tour t = data.Tours.SingleOrDefault(n => n.id == id);
+            return View(t);
+        }
+        [HttpPost, ActionName("DeleteTour")]
+
+        public ActionResult AcceptDeleteTour(int id)
         {
             Tour t = data.Tours.SingleOrDefault(n => n.id == id);
             if (t == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.LoaiTour = new SelectList(data.Loai_Tours.ToList().OrderBy(n => n.Name), "id", "Name", t.Loai_Tour_id);
-            return View(t);
-        }
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult EditTour(Tour t)
-        {
-            if (ModelState.IsValid)
-            {
-                // Find the existing tour in the database
-                Tour existingTour = data.Tours.SingleOrDefault(n => n.id == t.id);
-                if (existingTour != null)
-                {
-                    // Update the existing tour with the new values
-                    existingTour.Name = t.Name;
-                    existingTour.Gia = t.Gia;
-                    existingTour.TieuDe = t.TieuDe;
-                    existingTour.MoTa = t.MoTa;
-                    existingTour.LichTrinh = t.LichTrinh;
-                    existingTour.DiemKhoiHanh = t.DiemKhoiHanh;
-                    existingTour.DiemDen = t.DiemDen;
-                    existingTour.NgayKhoiHanh = t.NgayKhoiHanh;
-                    existingTour.NgayKetThuc = t.NgayKetThuc;
-                    existingTour.SoLuongCon = t.SoLuongCon;
-                    existingTour.Loai_Tour_id = t.Loai_Tour_id;
 
-                    data.SubmitChanges();
-                    return RedirectToAction("Index");
+            // Xóa hình ảnh liên quan trước khi xóa tour
+            var images = data.Image_Tours.Where(img => img.Tour_id == t.id).ToList();
+            foreach (var image in images)
+            {
+                var imagePath = Path.Combine(Server.MapPath("~/img"), image.Name);
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
                 }
+                data.Image_Tours.DeleteOnSubmit(image);
             }
-            ViewBag.LoaiTour = new SelectList(data.Loai_Tours.ToList().OrderBy(n => n.Name), "id", "Name", t.Loai_Tour_id);
-            return View(t);
-        }
-        public ActionResult DetailTour(int id)
-        {
-            Tour t = data.Tours.SingleOrDefault(n => n.id == id);
-            return View(t);
-        }
-        public ActionResult DeleteTour(int id)
-        {
-            Tour t = data.Tours.SingleOrDefault(n => n.id == id);
-            return View(t);
-        }
-        [HttpPost, ActionName("DeleteTour")]
-       
-        public ActionResult AcceptDeleteTour(int id)
-        {
-            Tour t = data.Tours.SingleOrDefault(n => n.id == id);
+
             data.Tours.DeleteOnSubmit(t);
             data.SubmitChanges();
             return RedirectToAction("Index");

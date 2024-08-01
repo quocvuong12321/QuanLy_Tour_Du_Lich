@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+@using QuanLy_TourDuLich.Models;
 
 <html>
 <head>
@@ -10,59 +11,74 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="~/img/favicon.ico" rel="icon">
+    <link href="~/img/favicon.png" rel="icon">
+
+    @*--font--*@
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600&family=Roboto&display=swap" rel="stylesheet">
+
+    
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+
     <!-- Libraries Stylesheet -->
     <link href="~/lib/animate/animate.min.css" rel="stylesheet">
     <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="~/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="~/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Template Stylesheet -->
     <link href="~/css/style.css" rel="stylesheet">
 </head>
 <body>
-    
-        <!-- Navbar & Hero Start -->
-        <div class="container-fluid position-relative p-0">
-            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="" class="navbar-brand p-0">
-                    <h1 class="text-primary m-0"><i class="fa fa-map-marker-alt me-3"></i>Tourist</h1>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="fa fa-bars"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto py-0">
-                        <a href="#" class="nav-item nav-link active">Trang chủ</a>
-                        <a href="#" class="nav-item nav-link">Tours</a>
-                        <a href="#" class="nav-item nav-link">Giới thiệu</a>
-                        <a href="~/Account/ChonTaiKhoan" class="nav-item nav-link">Đăng nhập</a>
-                        <a href="~/Account/DangKy" class="nav-item nav-link">Đăng ký</a>
-                    </div>
-                </div>
-            </nav>
 
-            <div class="container-fluid bg-primary py-5 mb-5 hero-header">
-                <div class="container py-5">
-                    <div class="row justify-content-center py-5">
-                        <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
-                            <h1 class="display-4 text-white mb-3 animated slideInDown">ENJOY YOUR VACATION WITH US</h1>
-                            <div class="position-relative w-75 mx-auto animated slideInDown">
-                                <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Eg: Thailand">
-                                <button type="button" class="btn btn-primary rounded-pill py-2 px-4 position-absolute top-0 end-0 me-2" style="margin-top: 7px;">Search</button>
-                            </div>
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid position-relative p-0">
+        <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+            <a href="" class="navbar-brand p-0">
+                <h1 class="text-primary m-0"><i class="fa fa-map-marker-alt me-3"></i>Tourist</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="#" class="nav-item nav-link active">Trang chủ</a>
+                    <a href="#" class="nav-item nav-link">Tours</a>
+                    <a href="#" class="nav-item nav-link">Giới thiệu</a>
+                    @if (Session["kh"] != null)
+                    {
+                        <a href="~/Account/DangXuat" class="nav-item nav-link">Đăng xuất</a>
+                        var kh = Session["kh"] as KhachHang;
+                        <span>Hi, @kh.Name</span>
+                    }
+                    else
+                    {
+                        <a href="~/Account/ChonTaiKhoan" class="nav-item nav-link">Đăng nhập</a>
+                    }
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid bg-primary py-5 mb-5 hero-header">
+            <div class="container py-5">
+                <div class="row justify-content-center py-5">
+                    <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
+                        <h1 class="display-4 text-white mb-3 animated slideInDown">ENJOY YOUR VACATION WITH US</h1>
+                        <div class="position-relative w-75 mx-auto animated slideInDown">
+                            <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Eg: Thailand">
+                            <button type="button" class="btn btn-primary rounded-pill py-2 px-4 position-absolute top-0 end-0 me-2" style="margin-top: 7px;">Search</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Navbar & Hero End -->
-        <div>
-            @RenderBody()
-        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+    <div>
+        @RenderBody()
+    </div>
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">

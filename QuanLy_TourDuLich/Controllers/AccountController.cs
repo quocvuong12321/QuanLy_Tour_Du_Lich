@@ -9,7 +9,7 @@ namespace QuanLy_TourDuLich.Controllers
     public class AccountController : Controller
     {
         // GET: Home
-        QuanLyTourDuLichDataContext data = new QuanLyTourDuLichDataContext();
+        CSDL_QLTourDataContext data = new CSDL_QLTourDataContext();
         public ActionResult Index()
         {
             return View();
@@ -43,12 +43,12 @@ namespace QuanLy_TourDuLich.Controllers
         //Form đăng nhập cho khách hàng
         public ActionResult DangNhapKhachHang()
         {
-            return View(new KhachHang());
+            return View();
         }
         //Fomr đăng nhập cho quản lý
         public ActionResult DangNhapQuanLy()
         {
-            return View(new KhachHang());
+            return View();
         }
 
         [HttpPost]
@@ -61,6 +61,7 @@ namespace QuanLy_TourDuLich.Controllers
                 {
                     if (MatKhau == KH.Password)
                     {
+                        Session["ql"] = KH;
                         return Redirect("~/Admin/HomeAdmin/Index");
                     }
                     else
@@ -89,6 +90,7 @@ namespace QuanLy_TourDuLich.Controllers
                 {
                     if (MatKhau == KH.Password)
                     {
+                        Session["kh"] = KH;
                         return RedirectToAction("Index");
                     }
                     else
@@ -102,6 +104,13 @@ namespace QuanLy_TourDuLich.Controllers
                 ViewBag.Login = "Tài khoản không tồn tại";
             }
             return View(TenDangNhap);
+        }
+
+        [HttpGet]
+        public ActionResult DangXuat()
+        {
+            Session["kh"] = null;
+            return RedirectToAction("Index");
         }
     }
 }

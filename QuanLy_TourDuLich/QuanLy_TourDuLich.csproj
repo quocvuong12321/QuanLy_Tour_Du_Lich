@@ -93,15 +93,13 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\form_Login.css" />
     <Content Include="css\style.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="img\bg.jpg" />
     <Content Include="img\booking.jpg" />
-    <Content Include="img\destination-1.jpg" />
-    <Content Include="img\destination-2.jpg" />
-    <Content Include="img\destination-3.jpg" />
-    <Content Include="img\destination-4.jpg" />
+    <Content Include="img\favicon.png" />
     <Content Include="img\package-1.jpg" />
     <Content Include="img\package-2.jpg" />
     <Content Include="img\package-3.jpg" />
@@ -1106,7 +1104,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HuongDanVienController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1115,7 +1115,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CSDL_QLTour.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Models\TourWithImagesViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1127,25 +1126,32 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="lib\owlcarousel\LICENSE" />
     <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\Admin_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\ThemMoiTour.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Index.cshtml" />
     <Content Include="Models\CSDL_QLTour.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>CSDL_QLTour.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Areas\Admin\Views\Shared\Admin_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\HomeAdmin\ThemmoiTour.cshtml" />
-    <Content Include="Areas\Admin\Views\HomeAdmin\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\HomeAdmin\EditTour.cshtml" />
-    <Content Include="Areas\Admin\Views\HomeAdmin\DetailTour.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\ThemHinhAnhTour.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\dsAnh.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\ChiTietTour.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\DeleteTour.cshtml" />
+    <Content Include="Areas\Admin\Views\HuongDanVien\ThemHuongDanVien.cshtml" />
+    <Content Include="Areas\Admin\Views\HuongDanVien\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HuongDanVien\Sua.cshtml" />
     <None Include="Models\CSDL_QLTour.dbml.layout">
       <DependentUpon>CSDL_QLTour.dbml</DependentUpon>
     </None>
     <None Include="packages.config" />
     <Content Include="Views\Shared\UserLayout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\Admin_Layout.cshtml" />
+    <Content Include="Views\Account\ChonTaiKhoan.cshtml" />
+    <Content Include="Views\Account\DangKy.cshtml" />
+    <Content Include="Views\Account\DangNhapKhachHang.cshtml" />
+    <Content Include="Views\Account\DangNhapQuanLy.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
     <Content Include="plugin\ckeditor\plugins\scayt\CHANGELOG.md" />
     <Content Include="plugin\ckeditor\plugins\scayt\LICENSE.md" />
     <Content Include="plugin\ckeditor\plugins\scayt\README.md" />
@@ -1160,6 +1166,8 @@
     <Content Include="plugin\ckeditor\skins\moono-lisa\readme.md" />
     <Content Include="plugin\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <Content Include="plugin\ckfinder\userfiles\.htaccess" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\AnhChoCard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

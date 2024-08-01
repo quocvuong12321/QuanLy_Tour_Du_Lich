@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.5, 16.875" name="CSDL_QLTour">
+  <DataContextMoniker Name="/CSDL_QLTourDataContext" />
+  <nestedChildShapes>
+    <classShape Id="a4fbd929-b110-43cb-98b5-1b2dc2224145" absoluteBounds="6.25, 7.875, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/CSDL_QLTourDataContext/ChiTiet_DatTour" />
+      <nestedChildShapes>
+        <elementListCompartment Id="991ef4c3-e6e2-42db-a19e-e1d738f10b0f" absoluteBounds="6.265, 8.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="706c8f42-3556-4989-9a0c-e57146c766a7" absoluteBounds="0.75, 9.125, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/CSDL_QLTourDataContext/TrangThai" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0e7b3d7a-b119-4969-be01-644eb9961fb9" absoluteBounds="0.765, 9.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="46cb079e-19e3-434c-a6f7-588e5144c281" absoluteBounds="9.25, 4.875, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/CSDL_QLTourDataContext/DanhGia" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2529adbb-8948-48ef-8100-4bd2d89d073a" absoluteBounds="9.265, 5.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="69ffed34-c0ee-4547-9dc7-ce9e04bc9fce" absoluteBounds="3.5, 9, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/CSDL_QLTourDataContext/DatTour" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fa43dc32-cc4a-4109-99f7-cced67395c9a" absoluteBounds="3.515, 9.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="70b85474-201b-40d4-be2c-df3f75b461fd" absoluteBounds="8.75, 1, 2, 1.5785953776041668">
+      <DataClassMoniker Name="/CSDL_QLTourDataContext/Feedback" />
+      <nestedChildShapes>
+        <elementListCompartment Id="95a18589-5a9f-45c8-8f75-3375ec96674c" absoluteBounds="8.765, 1.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="069eda8a-2973-4c89-bca6-3d54a365c91e" absoluteBounds="3.5, 0.75, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/CSDL_QLTourDataContext/HuongDanVien" />
+      <nestedChildShapes>
+        <elementListCompartment Id="67a8ca06-dade-460d-a104-5a8852072c60" absoluteBounds="3.515, 1.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e819078c-fdc8-40e3-8674-883c55bf045c" absoluteBounds="6.25, 5, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/CSDL_QLTourDataContext/Image_Tour" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d850c9c7-d247-4051-b410-b087406dcc3e" absoluteBounds="6.265, 5.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="275e433b-1186-4c7f-82a1-1bd554bc9bf3" absoluteBounds="6.5, 11.5, 2, 2.3478011067708344">
+      <DataClassMoniker Name="/CSDL_QLTourDataContext/KhachHang" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e8d6e9e6-2d99-4f0b-8e43-f74034b286f7" absoluteBounds="6.515, 11.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6502610c-7205-48b9-bfd1-d09771449b90" absoluteBounds="0.75, 5.125, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/CSDL_QLTourDataContext/Loai_Tour" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e083acc7-976d-4686-824f-0fab6833023b" absoluteBounds="0.765, 5.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="663025fd-2530-4b75-ba92-edb41d300f25" absoluteBounds="6.25, 2, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/CSDL_QLTourDataContext/PhanCong_HuongDanVien" />
+      <nestedChildShapes>
+        <elementListCompartment Id="02ea7cf1-6f6f-43a8-82d1-42d6919c0cd9" absoluteBounds="6.265, 2.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="519b87df-94b2-447c-88ce-0ebe3112fafb" absoluteBounds="3.75, 12.125, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/CSDL_QLTourDataContext/Role" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5ae6a29c-6b94-4729-ae06-b308e7eddbe1" absoluteBounds="3.765, 12.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d6ef74d6-173a-44aa-8bfc-b35cd8f520d3" absoluteBounds="3.5, 4.125, 2, 3.1170068359375005">
+      <DataClassMoniker Name="/CSDL_QLTourDataContext/Tour" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0b2fc5a8-ce95-4417-8d07-6999667a1c38" absoluteBounds="3.515, 4.585, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="55fa84b7-c892-4b82-8a58-2702996c0171" absoluteBounds="6.25, 15, 2, 1.5785953776041684">
+      <DataClassMoniker Name="/CSDL_QLTourDataContext/ThanhToan" />
+      <nestedChildShapes>
+        <elementListCompartment Id="506e9b4c-6cdf-4348-bc7a-976e27f45ed1" absoluteBounds="6.265, 15.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 9.32294840494792); (6.25 : 9.32294840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CSDL_QLTourDataContext/DatTour/DatTour_ChiTiet_DatTour" />
+      <nodes>
+        <classShapeMoniker Id="69ffed34-c0ee-4547-9dc7-ce9e04bc9fce" />
+        <classShapeMoniker Id="a4fbd929-b110-43cb-98b5-1b2dc2224145" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 9.72199625651042); (3.5 : 9.72199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CSDL_QLTourDataContext/TrangThai/TrangThai_DatTour" />
+      <nodes>
+        <classShapeMoniker Id="706c8f42-3556-4989-9a0c-e57146c766a7" />
+        <classShapeMoniker Id="69ffed34-c0ee-4547-9dc7-ce9e04bc9fce" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.40625 : 11.5); (8.40625 : 6.54734537760417); (9.25 : 6.54734537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CSDL_QLTourDataContext/KhachHang/KhachHang_DanhGia" />
+      <nodes>
+        <classShapeMoniker Id="275e433b-1186-4c7f-82a1-1bd554bc9bf3" />
+        <classShapeMoniker Id="46cb079e-19e3-434c-a6f7-588e5144c281" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.3749975 : 11.5); (8.3749975 : 10.14349609375); (5.5 : 10.14349609375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CSDL_QLTourDataContext/KhachHang/KhachHang_DatTour" />
+      <nodes>
+        <classShapeMoniker Id="275e433b-1186-4c7f-82a1-1bd554bc9bf3" />
+        <classShapeMoniker Id="69ffed34-c0ee-4547-9dc7-ce9e04bc9fce" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 2.35659912109375); (6.25 : 2.35659912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CSDL_QLTourDataContext/HuongDanVien/HuongDanVien_PhanCong_HuongDanVien" />
+      <nodes>
+        <classShapeMoniker Id="069eda8a-2973-4c89-bca6-3d54a365c91e" />
+        <classShapeMoniker Id="663025fd-2530-4b75-ba92-edb41d300f25" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.75 : 12.7219962565104); (6.5 : 12.7219962565104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CSDL_QLTourDataContext/Role/Role_KhachHang" />
+      <nodes>
+        <classShapeMoniker Id="519b87df-94b2-447c-88ce-0ebe3112fafb" />
+        <classShapeMoniker Id="275e433b-1186-4c7f-82a1-1bd554bc9bf3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 7.2420068359375); (5.875 : 7.6170068359375); (5.875 : 8.56772220247396); (6.25 : 8.56772220247396)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CSDL_QLTourDataContext/Tour/Tour_ChiTiet_DatTour" />
+      <nodes>
+        <classShapeMoniker Id="d6ef74d6-173a-44aa-8bfc-b35cd8f520d3" />
+        <classShapeMoniker Id="a4fbd929-b110-43cb-98b5-1b2dc2224145" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 4.90625); (9.25 : 4.90625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CSDL_QLTourDataContext/Tour/Tour_DanhGia" />
+      <nodes>
+        <classShapeMoniker Id="d6ef74d6-173a-44aa-8bfc-b35cd8f520d3" />
+        <classShapeMoniker Id="46cb079e-19e3-434c-a6f7-588e5144c281" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 5.69314697265625); (6.25 : 5.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CSDL_QLTourDataContext/Tour/Tour_Image_Tour" />
+      <nodes>
+        <classShapeMoniker Id="d6ef74d6-173a-44aa-8bfc-b35cd8f520d3" />
+        <classShapeMoniker Id="e819078c-fdc8-40e3-8674-883c55bf045c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 4.125); (5.875 : 3.75); (5.875 : 2.90269853320313); (6.25 : 2.90269853320313)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CSDL_QLTourDataContext/Tour/Tour_PhanCong_HuongDanVien" />
+      <nodes>
+        <classShapeMoniker Id="d6ef74d6-173a-44aa-8bfc-b35cd8f520d3" />
+        <classShapeMoniker Id="663025fd-2530-4b75-ba92-edb41d300f25" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 5.72199625651042); (3.5 : 5.72199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CSDL_QLTourDataContext/Loai_Tour/Loai_Tour_Tour" />
+      <nodes>
+        <classShapeMoniker Id="6502610c-7205-48b9-bfd1-d09771449b90" />
+        <classShapeMoniker Id="d6ef74d6-173a-44aa-8bfc-b35cd8f520d3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.59375 : 10.5785953776042); (3.59375 : 15.7892976888021); (6.25 : 15.7892976888021)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CSDL_QLTourDataContext/DatTour/DatTour_ThanhToan" />
+      <nodes>
+        <classShapeMoniker Id="69ffed34-c0ee-4547-9dc7-ce9e04bc9fce" />
+        <classShapeMoniker Id="55fa84b7-c892-4b82-8a58-2702996c0171" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

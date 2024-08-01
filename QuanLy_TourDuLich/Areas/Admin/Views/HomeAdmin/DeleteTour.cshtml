@@ -1,0 +1,44 @@
+﻿@model QuanLy_TourDuLich.Models.Tour
+
+@{
+    ViewBag.Title = "Xóa tour";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+<div class="container">
+    <h2>DeleteTour</h2>
+    <h3>Bạn có chắc chắn muốn xóa tour này?</h3>
+    <div>
+        <h4>Tour</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <h3>@Model.Name</h3>
+                <p><strong>Giá:</strong> @Model.Gia</p>
+                <p><strong>Tiêu đề:</strong> @Model.TieuDe</p>
+                <p><strong>Mô tả:</strong></p>
+                <p>@Html.Raw(Model.MoTa)</p>
+                <p><strong>Lịch trình:</strong></p>
+                <p>@Html.Raw(Model.LichTrinh)</p>
+                <p><strong>Điểm khởi hành:</strong> @Model.DiemKhoiHanh</p>
+                <p><strong>Điểm đến:</strong> @Model.DiemDen</p>
+                <p><strong>Ngày khởi hành:</strong> @String.Format("{0: dd/MM/yyyy}", Model.NgayKhoiHanh)</p>
+                <p><strong>Ngày kết thúc:</strong> @String.Format("{0: dd/MM/yyyy}", Model.NgayKetThuc)</p>
+                <p><strong>Số lượng còn:</strong> @Model.SoLuongCon</p>
+                <p><strong>Loại tour:</strong> @Model.Loai_Tour.Name</p>
+
+
+            </div>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</div>
+
