@@ -55,18 +55,43 @@ namespace QuanLy_TourDuLich.Areas.Admin.Controllers
             return View();
         }
 
+
         public ActionResult PhanCongHDV()
         {
-            return View();
+            List<Tour> ds = data.Tours.ToList();
+            List<PhanCong_HuongDanVien> pc = data.PhanCong_HuongDanViens.ToList();
+            ViewBag.pc = pc;
+            return View(ds);
         }
-        //[HttpPost]
-        //public ActionResult PhanCongHDV(int id_tour,int id_hdv)
-        //{
-        //    var tour = data.Tours.FirstOrDefault(t => t.id == id_tour);
-        //    PhanCong_HuongDanVien pc = new PhanCong_HuongDanVien();
-        //    pc.HuongDanVien_id = id_hdv;
-        //    pc.HuongDanVien_id = id_tour;
-        //    tour.PhanCong_HuongDanViens.Add(pc);
-        //}
+        
+        public ActionResult PhanCong(int id)
+        {
+            List<HuongDanVien> hdv = data.HuongDanViens.ToList();
+            List<PhanCong_HuongDanVien> pc = data.PhanCong_HuongDanViens.Where(t => t.Tour_id == id).ToList();
+            ViewBag.pc = pc;
+            List<PhanCong_HuongDanVien> pc2 = data.PhanCong_HuongDanViens.Where(t => t.Tour_id != id).ToList();
+            ViewBag.pc2 = pc2;
+            Tour to = data.Tours.Where(t => t.id == id).First();
+            ViewBag.tour = to;
+            return View(hdv);
+        }
+
+        public ActionResult XoaPhanCong(int tid, int hdvid)
+        {
+            PhanCong_HuongDanVien pc = data.PhanCong_HuongDanViens.Where(t => t.Tour_id == tid && t.HuongDanVien_id==hdvid).First();
+            data.PhanCong_HuongDanViens.DeleteOnSubmit(pc);
+            data.SubmitChanges();
+            return RedirectToAction("PhanCong", new { id = tid });
+        }
+
+        public ActionResult ThemPhanCong(int tid, int hdvid)
+        {
+            PhanCong_HuongDanVien pc = new PhanCong_HuongDanVien();
+            pc.Tour_id = tid;
+            pc.HuongDanVien_id = hdvid;
+            data.PhanCong_HuongDanViens.InsertOnSubmit(pc);
+            data.SubmitChanges();
+            return RedirectToAction("PhanCong", new { id = tid });
+        }
     }
 }
