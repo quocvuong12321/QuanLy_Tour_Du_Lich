@@ -1105,6 +1105,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\HuongDanVienController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QLUserController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1141,6 +1142,9 @@
     <Content Include="Areas\Admin\Views\HuongDanVien\ThemHuongDanVien.cshtml" />
     <Content Include="Areas\Admin\Views\HuongDanVien\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HuongDanVien\Sua.cshtml" />
+    <Content Include="Areas\Admin\Views\QLUser\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\QLUser\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\QLUser\Edit.cshtml" />
     <None Include="Models\CSDL_QLTour.dbml.layout">
       <DependentUpon>CSDL_QLTour.dbml</DependentUpon>
     </None>

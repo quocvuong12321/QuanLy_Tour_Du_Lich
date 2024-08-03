@@ -1,0 +1,77 @@
+﻿@model IEnumerable<QuanLy_TourDuLich.Models.KhachHang>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Thêm", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <lable>Role</lable>
+        </th>
+        <th>
+            <lable>Tên</lable>
+        </th>
+        <th>
+            <label>Email</label>
+        </th>
+        <th>
+            <label>Số điện thoại</label>
+        </th>
+        <th>
+            <label>Địa chỉ</label>
+        </th>
+        <th>
+            <label>Mật khẩu</label>
+        </th>
+        <th>
+            <label>Giới tính</label>
+        </th>
+        <th>
+            <lable>Action</lable>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DienThoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GioiTinh)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
+@if (TempData["ErrorMessage"] != null)
+{
+<div class="alert alert-danger">
+    @TempData["ErrorMessage"]
+</div>}

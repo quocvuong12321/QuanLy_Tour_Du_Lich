@@ -1,11 +1,12 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     <link href="~/img/favicon.png" rel="icon">
-
+    <link href="~/css/style.css" rel="stylesheet">
     <link href="~/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -16,11 +17,13 @@
             background-color: #343a40;
             padding: 10px 20px;
             display: flex;
-            position: fixed;
             justify-content: space-between;
             align-items: center;
             color: white;
             width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
         }
 
         .sidebar {
@@ -29,6 +32,7 @@
             padding-top: 20px;
             width: 250px;
             position: fixed;
+            top: 35px; /* Ensure the sidebar starts below the header */
         }
 
             .sidebar a {
@@ -43,23 +47,24 @@
                 }
 
         .main-content {
-            margin: 60px 0 35px 250px;
+            margin-top: 60px; /* Make room for the fixed header */
+            margin-left: 250px; /* Make room for the fixed sidebar */
             padding: 20px;
+            width: calc(100% - 250px);
         }
 
         .footer {
             background-color: #343a40;
             color: white;
             text-align: center;
-            padding: 0px;
+            padding: 0;
             position: fixed;
-            bottom: 0px;
+            bottom: 0;
             width: 100%;
-            left: 0;
         }
 
         .logo {
-            font-size: 1.5em;
+            font-size: 1.5rem;
             font-weight: bold;
         }
 
@@ -93,14 +98,15 @@
             align-items: center;
         }
 
-            .dropdown-toggle i {
-                margin-right: 5px;
-            }
+        .dropdown-toggle i {
+            margin-right: 5px;
+        }
 
         .dropdown-menu {
             display: none;
             position: absolute;
-            right: 0;
+            top: 100%;
+            left: 0;
             background-color: #fff;
             color: #000;
             min-width: 150px;
@@ -108,16 +114,16 @@
             z-index: 1;
         }
 
-            .dropdown-menu a {
-                color: #000;
-                padding: 10px;
-                text-decoration: none;
-                display: block;
-            }
+        .dropdown-menu a {
+            color: #000;
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+        }
 
-                .dropdown-menu a:hover {
-                    background-color: #f1f1f1;
-                }
+        .dropdown-menu a:hover {
+            background-color: #f1f1f1;
+        }
 
         .dropdown:hover .dropdown-menu {
             display: block;
@@ -128,37 +134,30 @@
     <header class="header">
         <div class="logo">Admin</div>
         <div class="nav-links">
-            <a href="#"><i class="fas fa-home"></i> Website</a>
+            <a href="~/Account/Index"><i class="fas fa-home"></i> Website</a>
             <a href="#"><i class="fas fa-bell"></i></a>
             <div class="dropdown">
                 <button class="dropdown-toggle">
-                    <i class="fas fa-user"></i> admin
+                    <i class="fas fa-user"></i> @Session["qlten"]
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Profile</a>
-                    <a class="dropdown-item" href="#">Settings</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Logout</a>
+                    <a class="dropdown-item" href="~/Account/Index">Logout</a>
                 </div>
             </div>
         </div>
     </header>
     <!-- Sidebar -->
-    <div class="d-flex">
-        <div class="sidebar col-md-2">
-            <a href="~/Admin/HuongDanVien/Index">Quản lý Hướng dẫn viên</a>
-            <a href="~/Admin/HomeAdmin/Index">Quản lý tour</a>
-            <a href="~/Admin/HuongDanVien/PhanCongHDV">Manage Bookings</a>
-            <a href="#users">Manage Users</a>
-            <a href="#reports">Reports</a>
-            <a href="#settings">Settings</a>
-            <a href="#logout">Logout</a>
-        </div>
-        <!-- Main Content -->
-        <div class="main-content col-md-10">
-                @RenderBody()
-            </div>
-        </div>
+    <div class="sidebar">
+        <a href="~/Admin/HuongDanVien/Index">Quản lý Hướng dẫn viên</a>
+        <a href="~/Admin/HomeAdmin/Index">Quản lý tour</a>
+        <a href="~/Admin/HuongDanVien/PhanCongHDV">Manage Bookings</a>
+        <a href="~/Admin/QLUser/Index">Manage Users</a>
+        <a href="#reports">Reports</a>
+    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        @RenderBody()
+    </div>
     <!-- Footer -->
     <div class="footer">
         <p>&copy; Quản Lý Du Lịch</p>

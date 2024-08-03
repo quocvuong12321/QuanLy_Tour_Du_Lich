@@ -62,6 +62,7 @@ namespace QuanLy_TourDuLich.Controllers
                     if (MatKhau == KH.Password)
                     {
                         Session["ql"] = KH;
+                        Session["qlten"] = KH.Name;
                         return Redirect("~/Admin/HomeAdmin/Index");
                     }
                     else
