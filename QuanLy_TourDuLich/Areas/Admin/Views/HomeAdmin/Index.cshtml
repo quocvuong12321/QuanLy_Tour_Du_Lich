@@ -5,7 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
 }
 
-<h2>Quản lý tour</h2>
+<b style="font-size:45px; color:black">Quản lý Tour</b>
 
 <p>
     @Html.ActionLink("Thêm mới", "ThemMoiTour")
@@ -51,19 +51,19 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @String.Format("{0:0,00}",item.Gia) VNĐ / người
+                @String.Format("{0:0,00}", item.Gia) VNĐ / người
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DiemKhoiHanh)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DiemDen)
-            </td> 
-            <td>
-                @Html.DisplayFor(modelItem => item.NgayKhoiHanh)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NgayKetThuc)
+                @String.Format("{0:dd/MM/yyyy}",item.NgayKhoiHanh)
+            </td>
+            <td>
+                @String.Format("{0:dd/MM/yyyy}", item.NgayKetThuc)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SoLuongCon)
@@ -72,10 +72,17 @@
             <td>
                 @Html.ActionLink("Sửa", "Edit", new { id = item.id }) |
                 @Html.ActionLink("Chi tiết", "ChiTietTour", new { id = item.id }) |
-                @Html.ActionLink("Xóa", "DeleteTour", new { id = item.id }) |
+                <a class="" style="cursor:pointer" onclick="xoa(@item.id)">Xóa</a> |
                 <a href="~/Admin/HomeAdmin/ThemHinhAnhTour/@item.id">Thêm hình ảnh</a>
             </td>
         </tr>
     }
 
 </table>
+<script>
+    var xoa = function (id) {
+        if (confirm("Bạn có chắc chắn muốn xóa không?")) {
+            location.href = "Home/DeleteTour" + id
+        }
+    }
+</script>

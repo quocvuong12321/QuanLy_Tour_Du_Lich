@@ -1,13 +1,13 @@
 ﻿
 @{
-    ViewBag.Title = "PhanCongHDV";
+    ViewBag.Title = "Phân công";
     Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
     List<PhanCong_HuongDanVien> pc = ViewBag.pc;
 }
 @using QuanLy_TourDuLich.Models
 @model List<Tour>
 
-<h2>Phân công hướng dẫn viên</h2>
+<b style="font-size:45px; color:black">Phân công hướng dẫn viên</b>
 
 <table class="table table-bordered">
     <tr>
@@ -59,7 +59,7 @@
                 @Html.DisplayFor(modelItem => item.NgayKetThuc)
             </td>
             <td>
-                @{ 
+                @{
                     int date = 0;
                     foreach (var i in pc)
                     {
@@ -68,19 +68,19 @@
                             date++;
                         }
                     }
-                    if(date==0)
+                    if (date == 0)
                     {
-                    <p>Chưa có</p>
+                        <p>Chưa có</p>
                     }
                     else
                     {
-                        foreach(var i in pc)
+                        foreach (var i in pc)
                         {
                             <p>
-                                @{ 
+                                @{
                                     if (i.Tour_id == item.id)
                                     {
-                                        @i.HuongDanVien.Fullname 
+                                        @i.HuongDanVien.Fullname
                                     }
                                 }
                             </p>
@@ -89,7 +89,7 @@
                 }
             </td>
             <td>
-                @Html.ActionLink("Phân công", "PhanCong", new { id=item.id})
+                @Html.ActionLink("Phân công", "PhanCong", new { id = item.id })
             </td>
         </tr>
     }

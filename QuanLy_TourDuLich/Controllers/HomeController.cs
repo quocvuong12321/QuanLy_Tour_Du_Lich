@@ -22,5 +22,27 @@ namespace QuanLy_TourDuLich.Controllers
             
             return PartialView(imgs_tour);
         }
+
+        public ActionResult ChiTietTour(int id)
+        {
+            ViewBag.HienThiAnh = data.Image_Tours.Where(t => t.Tour_id == id).ToList();
+            return View(data.Tours.FirstOrDefault(t => t.id == id));
+        }
+
+        public ActionResult GioiThieu()
+        {
+            return View();
+        }
+
+        //Chức năng tìm kiếm thường
+        public ActionResult TimKiem(string search)
+        {
+            var result = data.Tours.Where(t => t.Name.Contains(search) || t.MoTa.Contains(search)).ToList();
+            if (result == null)
+            {
+                ViewBag.kq = "Không tìm thấy: " + search;
+            }
+            return View("Index", result);
+        }
     }
 }

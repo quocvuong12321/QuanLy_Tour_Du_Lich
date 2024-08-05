@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<QuanLy_TourDuLich.Models.KhachHang>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Quản lý tài khoản";
     Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<b style="font-size:45px; color:black">Quản lý tài khoản</b>
 
 <p>
     @Html.ActionLink("Thêm", "Create")
@@ -63,8 +63,8 @@
                 @Html.DisplayFor(modelItem => item.GioiTinh)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                @Html.ActionLink("Sửa", "Edit", new { id = item.id }) |
+                <a class="" style="cursor:pointer" onclick="xoa(@item.id)">Xóa</a>
             </td>
         </tr>
     }
@@ -72,6 +72,14 @@
 </table>
 @if (TempData["ErrorMessage"] != null)
 {
-<div class="alert alert-danger">
-    @TempData["ErrorMessage"]
-</div>}
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>}
+
+<script>
+    var xoa = function (id) {
+        if (confirm("Bạn có chắc chắn muốn xóa không?")) {
+            location.href = "QLUser/Delete" + id
+        }
+    }
+</script>

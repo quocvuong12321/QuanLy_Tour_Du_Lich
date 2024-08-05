@@ -89,9 +89,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-grid.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-grid.min.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-grid.rtl.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-grid.rtl.min.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-reboot.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-reboot.min.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-reboot.rtl.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-reboot.rtl.min.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-utilities.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-utilities.min.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-utilities.rtl.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-utilities.rtl.min.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap.min.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap.rtl.css" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap.rtl.min.css" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.bundle.js" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.bundle.min.js" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.esm.js" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.esm.min.js" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.js" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.min.js" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="css\admin.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\form_Login.css" />
     <Content Include="css\style.css" />
@@ -99,6 +122,10 @@
     <Content Include="Global.asax" />
     <Content Include="img\bg.jpg" />
     <Content Include="img\booking.jpg" />
+    <Content Include="img\destination-1.jpg" />
+    <Content Include="img\destination-2.jpg" />
+    <Content Include="img\destination-3.jpg" />
+    <Content Include="img\destination-4.jpg" />
     <Content Include="img\favicon.png" />
     <Content Include="img\package-1.jpg" />
     <Content Include="img\package-2.jpg" />
@@ -1138,13 +1165,37 @@
     <Content Include="Areas\Admin\Views\HomeAdmin\ThemHinhAnhTour.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\dsAnh.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\ChiTietTour.cshtml" />
-    <Content Include="Areas\Admin\Views\HomeAdmin\DeleteTour.cshtml" />
     <Content Include="Areas\Admin\Views\HuongDanVien\ThemHuongDanVien.cshtml" />
     <Content Include="Areas\Admin\Views\HuongDanVien\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HuongDanVien\Sua.cshtml" />
     <Content Include="Areas\Admin\Views\QLUser\Index.cshtml" />
     <Content Include="Areas\Admin\Views\QLUser\Create.cshtml" />
     <Content Include="Areas\Admin\Views\QLUser\Edit.cshtml" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-grid.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-grid.min.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-grid.rtl.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-reboot.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-reboot.min.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-reboot.rtl.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-utilities.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-utilities.min.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-utilities.rtl.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap.min.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap.rtl.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\css\bootstrap.rtl.min.css.map" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.bundle.js.map" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.bundle.min.js.map" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.esm.js.map" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.esm.min.js.map" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.js.map" />
+    <Content Include="bootstrap-5.3.3-dist\js\bootstrap.min.js.map" />
+    <Content Include="Areas\Admin\Views\HuongDanVien\PhanCong.cshtml" />
+    <Content Include="Areas\Admin\Views\HuongDanVien\PhanCongHDV.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\AnhChoCard.cshtml" />
     <None Include="Models\CSDL_QLTour.dbml.layout">
       <DependentUpon>CSDL_QLTour.dbml</DependentUpon>
     </None>
@@ -1155,7 +1206,6 @@
     <Content Include="Views\Account\DangKy.cshtml" />
     <Content Include="Views\Account\DangNhapKhachHang.cshtml" />
     <Content Include="Views\Account\DangNhapQuanLy.cshtml" />
-    <Content Include="Views\Account\Index.cshtml" />
     <Content Include="plugin\ckeditor\plugins\scayt\CHANGELOG.md" />
     <Content Include="plugin\ckeditor\plugins\scayt\LICENSE.md" />
     <Content Include="plugin\ckeditor\plugins\scayt\README.md" />
@@ -1172,6 +1222,9 @@
     <Content Include="plugin\ckfinder\userfiles\.htaccess" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\AnhChoCard.cshtml" />
+    <Content Include="Views\Home\ChiTietTour.cshtml" />
+    <Content Include="Views\Home\GioiThieu.cshtml" />
+    <Content Include="Views\Account\ThongTinNguoiDung.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -10,10 +10,6 @@ namespace QuanLy_TourDuLich.Controllers
     {
         // GET: Home
         CSDL_QLTourDataContext data = new CSDL_QLTourDataContext();
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         public ActionResult DangKy()
         {
@@ -62,7 +58,6 @@ namespace QuanLy_TourDuLich.Controllers
                     if (MatKhau == KH.Password)
                     {
                         Session["ql"] = KH;
-                        Session["qlten"] = KH.Name;
                         return Redirect("~/Admin/HomeAdmin/Index");
                     }
                     else
@@ -92,7 +87,7 @@ namespace QuanLy_TourDuLich.Controllers
                     if (MatKhau == KH.Password)
                     {
                         Session["kh"] = KH;
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Index","Home");
                     }
                     else
                     {
@@ -111,7 +106,12 @@ namespace QuanLy_TourDuLich.Controllers
         public ActionResult DangXuat()
         {
             Session["kh"] = null;
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home");
+        }
+
+        public ActionResult ThongTinNguoiDung(int id)
+        {
+            return View(data.KhachHangs.FirstOrDefault(t => t.id == id));
         }
     }
 }

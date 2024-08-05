@@ -21,9 +21,6 @@ namespace QuanLy_TourDuLich.Areas.Admin.Controllers
             return View(dsTour);
 
         }
-
-
-
         public ActionResult ThemMoiTour()
         {
             ViewBag.LoaiTour = new SelectList(data.Loai_Tours.ToList().OrderBy(t => t.id), "id", "Name");
