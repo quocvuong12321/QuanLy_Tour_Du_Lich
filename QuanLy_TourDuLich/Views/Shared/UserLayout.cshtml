@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
-@using QuanLy_TourDuLich.Models;
-
+@using QuanLy_TourDuLich.Models
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -47,6 +46,8 @@
                     <a href="~/Home/Index" class="nav-item nav-link ">Trang chủ</a>
                     <a href="#" class="nav-item nav-link">Tours</a>
                     <a href="~/Home/GioiThieu" class="nav-item nav-link">Giới thiệu</a>
+                    @Html.Action("SoLuongGioHang","Home")
+
                     @if (Session["kh"] != null)
                     {
                         var kh = Session["kh"] as KhachHang;

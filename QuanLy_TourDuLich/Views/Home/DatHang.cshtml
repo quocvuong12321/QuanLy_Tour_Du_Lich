@@ -1,0 +1,62 @@
+﻿@using QuanLy_TourDuLich.Models
+@model Tour
+@{
+    ViewBag.Title = "DatHang";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<h2>DatTour</h2>
+
+<div class="container" style="width:60%">
+    <form action="/Home/ChuyenHuong/@Model.id" method ="post" class="table table-bordered">
+        <table class="table" style="table-layout:fixed">
+            <tbody>
+                <tr>
+                    <td>Tên tour</td>
+                    <td>@Model.Name</td>
+                </tr>
+                <tr>
+                    <td>Đơn giá</td>
+                    <td>@Model.Gia</td>
+                </tr>
+                <tr>
+                    <td>Điểm khởi hành</td>
+                    <td>@Model.DiemKhoiHanh</td>
+                </tr>
+                <tr>
+                    <td>Điểm kết thúc</td>
+                    <td>@Model.DiemDen</td>
+                </tr>
+                <tr>
+                    <td>Ngày bắt đầu</td>
+                    <td>@String.Format("{0:dd/MM/yyyy}", Model.NgayKhoiHanh)</td>
+                </tr>
+                <tr>
+                    <td>Ngày kết thúc</td>
+                    <td>@String.Format("{0:dd/MM/yyyy}", Model.NgayKetThuc)</td>
+                </tr>
+                <tr>
+                    <td>Số lượng người còn trống</td>
+                    <td>@Model.SoLuongCon</td>
+                </tr>
+                <tr>
+                    <td>Điểm xuất phát của bạn</td>
+                    <td><input type="text" placeholder="Nhập điểm xuất phát" name="DiemXuatPhat" value="@Model.DiemKhoiHanh" style="border-color:white; width:100%"/></td>
+                </tr>
+                <tr>
+                    <td>Số người của bạn</td>
+                    <td><input type="number" placeholder="Nhập số người của cho chuyến đi của bạn" name="SoNguoiDat" min="1" max="@Model.SoLuongCon" value="1" style="border-color:white; width:100%"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2">@ViewBag.tb</td>
+                </tr>
+                <tr>
+                    <td><button class="btn btn-primary" type="submit" style="float:right" name="XacNhan" value="2">Xác nhận đặt hàng</button></td>
+                    <td><button class="btn btn-primary" type="submit" name="XacNhan" value="1">Thêm vào giỏ hàng</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+</div>
+

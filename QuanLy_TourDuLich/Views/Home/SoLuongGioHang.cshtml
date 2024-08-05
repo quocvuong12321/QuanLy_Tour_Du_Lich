@@ -1,0 +1,11 @@
+﻿@using QuanLy_TourDuLich.Models
+@model List<ChiTiet_DatTour>
+
+@if (Model == null)
+{
+    <a href="~/Home/XemGioHang" class="nav-item nav-link">Giỏ hàng</a>
+}
+else
+{
+    <a href="~/Home/XemGioHang" class="nav-item nav-link">Giỏ hàng(@Model.Count())</a>
+}

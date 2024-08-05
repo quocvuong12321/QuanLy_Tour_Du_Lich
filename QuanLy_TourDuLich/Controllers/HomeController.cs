@@ -44,5 +44,164 @@ namespace QuanLy_TourDuLich.Controllers
             }
             return View("Index", result);
         }
+        
+        //Đặt hàng
+        public ActionResult DatHang(int id)
+        {
+            Tour to = data.Tours.Where(t => t.id == id).First();
+            return View(to);
+        }
+        //Chuyển hướng sang dặt sản phẩm hoặc sang giỏ hàng
+        [HttpPost]
+        public ActionResult ChuyenHuong(int XacNhan, string DiemXuatPhat, int SoNguoiDat, int id)
+        {
+            if (Session["kh"] == null)
+                return RedirectToAction("DangNhapKhachHang", "Account");
+            if (XacNhan == 1)
+                return RedirectToAction("ThemGioHang", new { DiemXuatPhat, SoNguoiDat, id });
+            return RedirectToAction("Dat1SanPham", new { DiemXuatPhat, SoNguoiDat, id });
+        }
+
+
+        public ActionResult Dat1SanPham(string DiemXuatPhat, int SoNguoiDat, int id)
+        {
+            ChiTiet_DatTour ct = new ChiTiet_DatTour();
+            DatTour dt = new DatTour();
+            
+            data.ChiTiet_DatTours.InsertOnSubmit(ct);
+            data.DatTours.InsertOnSubmit(dt);
+            data.SubmitChanges();
+
+            ChiTiet_DatTour ct2 = data.ChiTiet_DatTours.Where(t=>t.id==ct.id).First();
+            DatTour dt2 = data.DatTours.Where(t => t.id == dt.id).First();
+            ct2.Tour_id = id;
+            ct2.SoNguoiDat = SoNguoiDat;
+            ct2.DiemXuatPhat = DiemXuatPhat;
+            ct2.DatTour_id = dt.id;
+
+            KhachHang kh = (KhachHang)Session["kh"];
+            dt2.User_id = kh.id;
+            dt2.id_TrangThai = 1;
+
+            data.SubmitChanges();
+
+            ViewBag.ct = ct2;
+
+            ViewBag.snd = SoNguoiDat;
+            return RedirectToAction("ChiTietDonHang", new { id=dt2.id });
+        }
+       
+
+        public ActionResult ChiTietDonHang(int id)
+        {
+            DatTour dt = data.DatTours.Where(t => t.id == id).First();
+            List<ChiTiet_DatTour> ct = data.ChiTiet_DatTours.Where(t => t.DatTour_id == id).ToList();
+            ViewBag.ct = ct;
+            return View(dt);
+        }
+        [HttpPost]
+        public ActionResult ChiTietDonHang(int id, FormCollection f)
+        {
+            DatTour dt = data.DatTours.Where(t => t.id == id).First();
+            dt.id_TrangThai = 1;
+            data.SubmitChanges();
+            dt.GhiChu = f["GhiChu"];
+       
+            data.SubmitChanges();
+            return RedirectToAction("Index"); /////////////////////////////// Thay Index bằng thanh toán để đi tới trang thanh toán
+        }
+
+        public ActionResult ThemGioHang(string DiemXuatPhat, int SoNguoiDat, int id)
+        {
+            List<ChiTiet_DatTour> lct = data.ChiTiet_DatTours.Where(t => t.Tour_id == id).ToList();
+            
+            KhachHang kh = Session["kh"] as KhachHang;
+            DatTour dt = data.DatTours.Where(t => t.User_id == kh.id && t.id_TrangThai==3).FirstOrDefault();
+            if(dt==null)
+            {
+                dt = new DatTour();
+                dt.id_TrangThai = 3;
+                dt.User_id = kh.id;
+                data.DatTours.InsertOnSubmit(dt);
+                data.SubmitChanges();
+            }
+            ChiTiet_DatTour ct = lct.Find(t => t.Tour_id == id && t.DatTour_id==dt.id);
+            if (ct ==null)
+            {
+                ChiTiet_DatTour ct2 = new ChiTiet_DatTour();
+                data.ChiTiet_DatTours.InsertOnSubmit(ct2);
+                data.SubmitChanges();
+                ChiTiet_DatTour cto = data.ChiTiet_DatTours.Where(t => t.id == ct2.id).First();
+                cto.SoNguoiDat = SoNguoiDat;
+                cto.DiemXuatPhat = DiemXuatPhat;
+                cto.DatTour_id = dt.id;
+                cto.Tour_id = id;
+                data.SubmitChanges();
+            }    
+            else
+            {
+                ct.SoNguoiDat = SoNguoiDat;
+                ct.DiemXuatPhat = DiemXuatPhat;
+                data.SubmitChanges();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult XemGioHang()
+        {
+            KhachHang kh = (KhachHang)Session["kh"];
+            if (kh == null)
+                return RedirectToAction("DangNhapKhachHang", "Account");
+            DatTour dt = data.DatTours.Where(t => t.id_TrangThai == 3 && t.User_id == kh.id).FirstOrDefault();
+            if(dt==null)
+            {
+                List<ChiTiet_DatTour> c =new List<ChiTiet_DatTour>();
+                c = null;
+                return View(c);
+            }    
+            List<ChiTiet_DatTour> ct = data.ChiTiet_DatTours.Where(t=>t.DatTour_id==dt.id).ToList();
+            ViewBag.to = dt.id;
+            return View(ct);
+        }
+
+        [HttpPost]
+        public ActionResult SuaChiTietDH(int id, FormCollection f)
+        {
+            ChiTiet_DatTour ct = data.ChiTiet_DatTours.Where(t => t.id == id).FirstOrDefault();
+            if (ct != null)
+            {
+                ct.SoNguoiDat = int.Parse(f["SoLuong"].ToString());
+                ct.DiemXuatPhat = f["DiemXuatPhat"];
+                data.SubmitChanges();
+            }
+            return RedirectToAction("XemGioHang");
+        }
+
+        public ActionResult DeleteChiTietDH(int id)
+        {
+            ChiTiet_DatTour ct = data.ChiTiet_DatTours.Where(t => t.id == id).FirstOrDefault();
+            data.ChiTiet_DatTours.DeleteOnSubmit(ct);
+            data.SubmitChanges();
+            return RedirectToAction("XemGioHang");
+        }
+        public ActionResult SoLuongGioHang()
+        {
+            KhachHang kh = (KhachHang)Session["kh"];
+            List<ChiTiet_DatTour> c;
+            if (kh != null)
+            {
+                DatTour dt = data.DatTours.Where(t => t.id_TrangThai == 3 && t.User_id == kh.id).FirstOrDefault();
+                if(dt==null)
+                {
+                    c = null;
+                    return PartialView(c);
+                }    
+                c = data.ChiTiet_DatTours.Where(t => t.DatTour_id == dt.id).ToList();
+                return PartialView(c);
+            }
+            c = null;
+            return PartialView(c);
+        }
     }
 }

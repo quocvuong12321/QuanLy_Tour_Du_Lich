@@ -1,0 +1,54 @@
+﻿@using QuanLy_TourDuLich.Models
+@model List<ChiTiet_DatTour>
+@{
+    ViewBag.Title = "XemGioHang";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<div class="container" style="width:100%">
+    
+        <table class="table" style="table-layout:fixed">
+            <tbody>
+                <tr>
+                    <th>Mã tour</th>
+                    <th>Tên tour</th>
+                    <th>Số người đặt</th>
+                    <td>Địa điểm xuất phát</td>
+                    <th>Đơn giá</th>
+                    <th>Tổng tiền</th>
+                    <th></th>
+                </tr>
+                @{
+                    if (Model != null)
+                    {
+                        foreach (ChiTiet_DatTour item in Model)
+                        {
+                            <form action="/Home/SuaChiTietDH/@item.id" method="post" class="table table-bordered">
+                            <tr>
+                                <td>@item.Tour_id</td>
+                                <td>@item.Tour.Name</td>
+                                <td><input type="number" value="@item.SoNguoiDat" min="1" max="@item.Tour.SoLuongCon" name="SoLuong" style="width:100%" /></td>
+                                <td><input type="text" name="DiemXuatPhat" value="@item.DiemXuatPhat" style="width:100%" /></td>
+                                <td>@item.Tour.Gia</td>
+                                <td>@(item.SoNguoiDat * item.Tour.Gia)</td>
+                                <td>
+                                    <button class="btn btn-primary"><a href="/Home/DeleteChiTietDH/@item.id" style="color: white">Xóa</a></button> |
+                                    <button type="submit" class="btn btn-primary">Sửa</button>
+                                </td>
+                            </tr>
+                            </form>
+                        }
+                        <tr>
+                            <td colspan="7" class="text-center">
+                                <a href="/Home/ChiTietDonHang/@ViewBag.to"><button class="btn btn-primary" type="button">Xác nhận đặt hàng</button></a>
+                            </td>
+                        </tr>
+                    }
+
+                }
+
+            </tbody>
+        </table>
+
+</div>
+
