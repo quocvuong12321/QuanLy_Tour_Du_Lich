@@ -8,9 +8,9 @@
 <b style="font-size:45px; color:black">Quản lý tài khoản</b>
 
 <p>
-    @Html.ActionLink("Thêm", "Create")
+    @Html.ActionLink("Thêm người dùng", "Create", null, new { @class = "btn btn-primary", @style = "font: bold; color:white; border-radius: 5px; font-weight: bold" })
 </p>
-<table class="table">
+<table class="table table-bordered">
     <tr>
         <th>
             <lable>Role</lable>
@@ -33,9 +33,7 @@
         <th>
             <label>Giới tính</label>
         </th>
-        <th>
-            <lable>Action</lable>
-        </th>
+        <th></th>
     </tr>
 
     @foreach (var item in Model)
