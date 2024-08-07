@@ -14,7 +14,7 @@ namespace QuanLy_TourDuLich.Controllers
         public ActionResult Index()
         {
 
-            return View(data.Tours.ToList());
+            return View(data.Tours.Where(t=>t.SoLuongCon!=0).ToList());
         }
         //Lấy 1 ảnh ra để hiện thị lên indexx
         public ActionResult AnhChoCard(int id) {
@@ -104,6 +104,13 @@ namespace QuanLy_TourDuLich.Controllers
         {
             DatTour dt = data.DatTours.Where(t => t.id == id).First();
             dt.id_TrangThai = 1;
+            List<ChiTiet_DatTour> ct = data.ChiTiet_DatTours.Where(t => t.DatTour_id == dt.id).ToList();
+            foreach(var item in ct)
+            {
+                Tour to = data.Tours.First(t => t.id == item.Tour_id);
+                to.SoLuongCon = to.SoLuongCon - item.SoNguoiDat;
+                
+            }    
             data.SubmitChanges();
             dt.GhiChu = f["GhiChu"];
        
@@ -161,8 +168,17 @@ namespace QuanLy_TourDuLich.Controllers
                 return View(c);
             }    
             List<ChiTiet_DatTour> ct = data.ChiTiet_DatTours.Where(t=>t.DatTour_id==dt.id).ToList();
+            foreach(var item in ct)
+            {
+                if(item.Tour.SoLuongCon==0)
+                {
+                    data.ChiTiet_DatTours.DeleteOnSubmit(item);
+                }    
+            }
+            data.SubmitChanges();
+            List<ChiTiet_DatTour> ct2 = data.ChiTiet_DatTours.Where(t => t.DatTour_id == dt.id).ToList();
             ViewBag.to = dt.id;
-            return View(ct);
+            return View(ct2);
         }
 
         [HttpPost]
@@ -218,6 +234,12 @@ namespace QuanLy_TourDuLich.Controllers
             DatTour ds = data.DatTours.Where(t => t.id == id).First();
             ds.id_TrangThai = 5;
             UpdateModel(ds);
+            List<ChiTiet_DatTour> ct = data.ChiTiet_DatTours.Where(t => t.DatTour_id == ds.id).ToList();
+            foreach (var item in ct)
+            {
+                Tour to = data.Tours.First(t => t.id == item.Tour_id);
+                to.SoLuongCon = to.SoLuongCon + item.SoNguoiDat;
+            }
             data.SubmitChanges();
             return RedirectToAction("LichSuDonHang");
         }
