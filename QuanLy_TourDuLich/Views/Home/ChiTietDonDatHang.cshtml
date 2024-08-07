@@ -13,9 +13,6 @@
                 <th>Mã tour</th>
                 <th>Tên tour</th>
                 <th>Số người đặt</th>
-                <td>Địa điểm xuất phát</td>
-                <th>Đơn giá</th>
-                <th>Tổng tiền</th>
                 <th></th>
             </tr>
             @{
@@ -28,19 +25,18 @@
                             <td>@item.Tour_id</td>
                             <td>@item.Tour.Name</td>
                             <td>@item.SoNguoiDat</td>
+<<<<<<< HEAD
                             <td>@item.DiemXuatPhat</td>
                             <td>@item.Tour.Gia</td>
                             <td class="text-danger">@String.Format("{0:0,00}",(item.SoNguoiDat * item.Tour.Gia)) đ</td>
+=======
+>>>>>>> a40aa8f31742a7e36bcf16dbbd9f61536a57fd61
                             <td>
+                                <a href="/Home/DanhGiaTour/@item.Tour_id"><button class="btn btn-primary" type="button">Đánh giá tour</button></a>
                             </td>
                         </tr>
                         </form>
                     }
-                    <tr>
-                        <td colspan="7" class="text-center">
-                            <a href="/Home/Index"><button class="btn btn-primary" type="button">Trang chủ</button></a>
-                        </td>
-                    </tr>
                 }
 
             }
