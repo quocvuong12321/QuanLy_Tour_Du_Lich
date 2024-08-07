@@ -1,0 +1,52 @@
+﻿@using QuanLy_TourDuLich.Models
+@model List<ChiTiet_DatTour>
+@{
+    ViewBag.Title = "ChiTietDonDatHang";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<div class="container" style="width:100%">
+
+    <table class="table" style="table-layout:fixed">
+        <tbody>
+            <tr>
+                <th>Mã tour</th>
+                <th>Tên tour</th>
+                <th>Số người đặt</th>
+                <td>Địa điểm xuất phát</td>
+                <th>Đơn giá</th>
+                <th>Tổng tiền</th>
+                <th></th>
+            </tr>
+            @{
+                if (Model != null)
+                {
+                    foreach (ChiTiet_DatTour item in Model)
+                    {
+                        <form action="/Home/SuaChiTietDH/@item.id" method="post" class="table table-bordered">
+                        <tr>
+                            <td>@item.Tour_id</td>
+                            <td>@item.Tour.Name</td>
+                            <td>@item.SoNguoiDat</td>
+                            <td>@item.DiemXuatPhat</td>
+                            <td>@item.Tour.Gia</td>
+                            <td>@(item.SoNguoiDat * item.Tour.Gia)</td>
+                            <td>
+                            </td>
+                        </tr>
+                        </form>
+                    }
+                    <tr>
+                        <td colspan="7" class="text-center">
+                            <a href="/Home/Index"><button class="btn btn-primary" type="button">Trang chủ</button></a>
+                        </td>
+                    </tr>
+                }
+
+            }
+
+        </tbody>
+    </table>
+
+</div>
+

@@ -3,9 +3,9 @@
 
 @if (Model == null)
 {
-    <a href="~/Home/XemGioHang" class="nav-item nav-link">Giỏ hàng</a>
+    <a href="~/Home/XemGioHang" class="nav-item nav-link"><i class="fa-shopping-cart fa"></i></a>
 }
 else
 {
-    <a href="~/Home/XemGioHang" class="nav-item nav-link">Giỏ hàng(@Model.Count())</a>
+    <a href="~/Home/XemGioHang" class="nav-item nav-link"><i class="fa-shopping-cart fa"></i> @Model.Count()</a>
 }

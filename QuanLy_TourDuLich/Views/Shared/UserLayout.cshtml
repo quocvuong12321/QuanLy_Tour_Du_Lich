@@ -46,7 +46,6 @@
                     <a href="~/Home/Index" class="nav-item nav-link ">Trang chủ</a>
                     <a href="#" class="nav-item nav-link">Tours</a>
                     <a href="~/Home/GioiThieu" class="nav-item nav-link">Giới thiệu</a>
-                    @Html.Action("SoLuongGioHang","Home")
 
                     @if (Session["kh"] != null)
                     {
@@ -58,6 +57,8 @@
                     {
                         <a href="~/Account/ChonTaiKhoan" class="nav-item nav-link">Đăng nhập</a>
                     }
+                    <a href="/Home/LichSuDonHang" class="nav-item nav-link">Lịch sử đặt hàng </a>
+                    @Html.Action("SoLuongGioHang", "Home")
                 </div>
             </div>
         </nav>

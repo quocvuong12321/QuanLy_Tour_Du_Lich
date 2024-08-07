@@ -203,5 +203,28 @@ namespace QuanLy_TourDuLich.Controllers
             c = null;
             return PartialView(c);
         }
+        public ActionResult LichSuDonHang()
+        {
+            KhachHang kh = (KhachHang)Session["kh"];
+            if (kh == null)
+                return RedirectToAction("DangNhapKhachHang", "Account");
+            List<DatTour> ds = data.DatTours.Where(t => t.User_id == kh.id && t.id_TrangThai != 3).ToList();
+            List<ChiTiet_DatTour> ct = data.ChiTiet_DatTours.ToList();
+            ViewBag.ct = ct;
+            return View(ds);
+        }
+        public ActionResult HuyDonHang(int id)
+        {
+            DatTour ds = data.DatTours.Where(t => t.id == id).First();
+            ds.id_TrangThai = 5;
+            UpdateModel(ds);
+            data.SubmitChanges();
+            return RedirectToAction("LichSuDonHang");
+        }
+        public ActionResult ChiTietDonDatHang(int id)
+        {
+            List<ChiTiet_DatTour> ds = data.ChiTiet_DatTours.Where(t => t.DatTour_id == id).ToList();
+            return View(ds);
+        }
     }
 }
