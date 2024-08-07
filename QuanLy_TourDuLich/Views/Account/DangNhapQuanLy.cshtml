@@ -14,6 +14,10 @@
             <h2 style="text-align:center;">Đăng nhập quản lý</h2>
             <input type="text" class="input-field" name="TenDangNhap" placeholder="Email hoặc số điện thoại" required>
             <input type="password" class="input-field" name="MatKhau" placeholder="Mật khẩu" required>
+            @if (!string.IsNullOrEmpty(ViewBag.LoginQL))
+            {
+                <p style="color:red">@ViewBag.LoginQL*</p>
+            }
             <input type="checkbox" class="check-box"><span>Remember Password</span>
             <button type="submit" class="submit-btn">Đăng nhập</button>
         </form>

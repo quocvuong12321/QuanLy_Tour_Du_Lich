@@ -1,0 +1,49 @@
+﻿@model QuanLy_TourDuLich.Models.Tour
+@using QuanLy_TourDuLich.Models;
+@{
+    ViewBag.Title = "Edit ảnh tour";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+
+}
+
+<b style="font-size:45px; color:black">Sửa hình ảnh tour</b>
+@using (Html.BeginForm("EditHinhAnhTour", "HomeAdmin", FormMethod.Post, new { enctype = "multipart/form-data"}))
+{
+    @Html.HiddenFor(a=>a.id)
+    <div class="form-group">
+        <label class="control-label col-md-2">Hình ảnh hiện tại</label>
+        <div class="col-md-10">
+            @if (ViewBag.imgs != null && ViewBag.imgs.Count > 0)
+            {
+                foreach (var img in ViewBag.imgs as List<Image_Tour>)
+                {
+                    <div style="display:inline-block; position:relative; margin:5px;">
+                        <img src="~/img/@img.Name" alt="@img.Name" style="max-width: 100px; max-height: 100px;" />
+                        @using (Html.BeginForm("XoaHinhAnh", "HomeAdmin", FormMethod.Post))
+                        {
+                            @Html.Hidden("imageId", img.id)
+                            @Html.Hidden("tourId", Model.id)
+                            <button type="submit" class="btn btn-danger" style="position:absolute; top:0; right:0;">X</button>}
+                    </div>}
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        <Label class="col-md-2">Images</Label>
+        <div class="col-md-10">
+            <input type="file" name="fileUpload" multiple />
+            @ViewBag.Thongbao
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Sửa" class="btn btn-success" />
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

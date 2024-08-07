@@ -71,6 +71,7 @@ namespace QuanLy_TourDuLich.Controllers
                     ViewBag.LoginQL = "Tài khoản không tồn tại";
 
                 }
+
             }
             return View();
 
@@ -94,12 +95,13 @@ namespace QuanLy_TourDuLich.Controllers
                         ViewBag.Login = "Mật khẩu không đúng";
                     }
                 }
+                else
+                {
+                    ViewBag.Login = "Tài khoản không tồn tại";
+                }
             }
-            else
-            {
-                ViewBag.Login = "Tài khoản không tồn tại";
-            }
-            return View(TenDangNhap);
+            
+            return View();
         }
 
         [HttpGet]

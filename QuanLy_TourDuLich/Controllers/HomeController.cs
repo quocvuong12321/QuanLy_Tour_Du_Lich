@@ -248,5 +248,9 @@ namespace QuanLy_TourDuLich.Controllers
             List<ChiTiet_DatTour> ds = data.ChiTiet_DatTours.Where(t => t.DatTour_id == id).ToList();
             return View(ds);
         }
+        public ActionResult HienThiFeedback()
+        {
+            return PartialView(data.Feedbacks.ToList());
+        }
     }
 }

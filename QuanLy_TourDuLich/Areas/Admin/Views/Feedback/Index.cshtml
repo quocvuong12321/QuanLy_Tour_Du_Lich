@@ -1,0 +1,49 @@
+﻿@model IEnumerable<QuanLy_TourDuLich.Models.Feedback>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+
+<b style="font-size:45px; color:black">Phản hồi</b>
+
+@using (Html.BeginForm("DeleteSelected", "Feedback", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+
+
+    <table class="table">
+        <tr>
+            <th>
+                <label>Tiêu đề</label>
+            </th>
+            <th>
+                <label>Ngày gửi</label>
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TieuDe)
+                </td>
+                <td>
+                    @String.Format("{0:dd/MM/yyyy}", item.NgayPhanHoi)
+                </td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.id }) | <a onclick="xoa(@item.id)" style="cursor:pointer">Xóa</a>
+                </td>
+            </tr>
+        }
+    </table>
+}
+<script>
+    var xoa = function (id) {
+        if (confirm("Bạn có chắc chắn muốn xóa không?")) {
+            location.href = "FeedBack/Delete/" + id
+        }
+    }
+</script>

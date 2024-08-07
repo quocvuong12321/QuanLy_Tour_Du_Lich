@@ -53,10 +53,10 @@
                 @Html.DisplayFor(modelItem => item.DiemDen)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NgayKhoiHanh)
+                @String.Format("{0:dd/MM/yyyy}",item.NgayKhoiHanh)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NgayKetThuc)
+                @String.Format("{0:dd/MM/yyyy}", item.NgayKetThuc)
             </td>
             <td>
                 @{

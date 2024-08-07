@@ -16,6 +16,10 @@
         <form id="login" action="~/Account/DangNhapKhachHang" method="post" class="input-group">
             <input type="text" class="input-field" name="TenDangNhap" placeholder="Email hoặc số điện thoại" required>
             <input type="password" class="input-field" name="MatKhau" placeholder="Mật khẩu" required>
+            @if (!string.IsNullOrEmpty(ViewBag.Login))
+            {
+                <div style="color:red">@ViewBag.Login*</div>
+            }
             <input type="checkbox" class="check-box"><span>Remember Password</span>
             <button type="submit" class="submit-btn">Đăng nhập</button>
         </form>
@@ -28,7 +32,6 @@
             <input type="password" name="Password" placeholder="Mật khẩu" class="input-field" />
             <input class="check-box" type="radio" name="GioiTinh" value="nam" />Nam
             <input class="check-box" type="radio" name="GioiTinh" value="nữ" />Nữ
-            @*<input type="checkbox" class="check-box"><span>Tôi đồng ý với điều khoản và dịch vụ</span>*@
             <button type="submit" class="submit-btn">Đăng ký</button>
         </form>
     </div>

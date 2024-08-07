@@ -72,8 +72,10 @@
             <td>
                 @Html.ActionLink("Sửa", "Edit", new { id = item.id }) |
                 @Html.ActionLink("Chi tiết", "ChiTietTour", new { id = item.id }) |
-                <a class="" style="cursor:pointer" onclick="xoa(@item.id)">Xóa</a> |
-                <a href="~/Admin/HomeAdmin/ThemHinhAnhTour/@item.id">Thêm hình ảnh</a>
+                <a onclick="xoa(@item.id)" href="#">Xóa</a> |
+                <a href="~/Admin/HomeAdmin/ThemHinhAnhTour/@item.id">Thêm ảnh</a> |
+                <a href="~/Admin/HomeAdmin/XoaHinhAnh/@item.id">Xóa ảnh</a>
+
             </td>
         </tr>
     }
@@ -82,7 +84,7 @@
 <script>
     var xoa = function (id) {
         if (confirm("Bạn có chắc chắn muốn xóa không?")) {
-            location.href = "Home/DeleteTour" + id
+            location.href = "HomeAdmin/XoaTour/" + id
         }
     }
 </script>

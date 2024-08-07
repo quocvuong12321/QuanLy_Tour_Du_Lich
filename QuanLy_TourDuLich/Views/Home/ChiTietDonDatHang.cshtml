@@ -30,7 +30,7 @@
                             <td>@item.SoNguoiDat</td>
                             <td>@item.DiemXuatPhat</td>
                             <td>@item.Tour.Gia</td>
-                            <td>@(item.SoNguoiDat * item.Tour.Gia)</td>
+                            <td class="text-danger">@String.Format("{0:0,00}",(item.SoNguoiDat * item.Tour.Gia)) đ</td>
                             <td>
                             </td>
                         </tr>

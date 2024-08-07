@@ -98,37 +98,95 @@ namespace QuanLy_TourDuLich.Areas.Admin.Controllers
             return PartialView(data.Image_Tours.Where(t => t.Tour_id == id).ToList());
         }
 
-        
-        public ActionResult DeleteTour(int id) // Xóa 1 tour 
+        //Xóa 1 tour
+       public ActionResult XoaTour(int id)
         {
-            Tour t = data.Tours.SingleOrDefault(n => n.id == id);
-            return View(t);
-        }
-        [HttpPost, ActionName("DeleteTour")]
-
-        public ActionResult AcceptDeleteTour(int id)
-        {
-            Tour t = data.Tours.SingleOrDefault(n => n.id == id);
-            if (t == null)
+            var t = data.Tours.FirstOrDefault(a => a.id == id);
+            var image = t.Image_Tours.ToList();
+            //xóa ảnh trước khi xóa tour
+            if (image != null)
             {
-                return HttpNotFound();
-            }
+                foreach(var item in image)
+                {
+                    var imagePath = Path.Combine(Server.MapPath("~/img"), item.Name);
 
-            // Xóa hình ảnh liên quan trước khi xóa tour
-            var images = data.Image_Tours.Where(img => img.Tour_id == t.id).ToList();
-            foreach (var image in images)
+                    // Delete the file from the file system
+                    if (System.IO.File.Exists(imagePath))
+                    {
+                        System.IO.File.Delete(imagePath);
+                    }
+
+                    // Delete the record from the database
+                    data.Image_Tours.DeleteOnSubmit(item);
+                }
+                
+            }
+            data.Tours.DeleteOnSubmit(t);
+            data.SubmitChanges();
+            return RedirectToAction("Index");
+
+        }
+
+        //Edit tour
+        public ActionResult Edit(int id)
+        {
+            ViewBag.LoaiTour = new SelectList(data.Loai_Tours.ToList().OrderBy(t => t.id), "id", "Name");
+            return View(data.Tours.FirstOrDefault(t=>t.id==id));
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Edit(Tour model)
+        {
+            if (ModelState.IsValid)
+            {
+                var tour = data.Tours.FirstOrDefault(t => t.id == model.id);
+                if (tour != null)
+                {
+                    tour.Name = model.Name;
+                    tour.Gia = model.Gia;
+                    tour.MoTa = model.MoTa;
+                    tour.LichTrinh = model.LichTrinh;
+                    tour.DiemKhoiHanh = model.DiemKhoiHanh;
+                    tour.NgayKetThuc = model.NgayKetThuc;
+                    tour.SoLuongCon = model.SoLuongCon;
+                    tour.Loai_Tour_id = model.Loai_Tour_id;
+                    tour.NgayKhoiHanh = model.NgayKhoiHanh;
+                    tour.DiemDen = model.DiemDen;
+                    tour.Loai_Tour_id = model.Loai_Tour_id;
+                    data.SubmitChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            ViewBag.LoaiTour = new SelectList(data.Loai_Tours.ToList().OrderBy(t => t.id), "id", "Name");
+
+            return View("model");
+        }
+
+        
+        public ActionResult XoaHinhAnh(int id)
+        {
+            return View(data.Image_Tours.Where(t => t.Tour_id == id).ToList());
+        }
+        [HttpPost]
+        public ActionResult XoaHinhAnh(int imageId, int tourId)
+        {
+            var image = data.Image_Tours.FirstOrDefault(i => i.id == imageId);
+            if (image != null)
             {
                 var imagePath = Path.Combine(Server.MapPath("~/img"), image.Name);
+
+                // Delete the file from the file system
                 if (System.IO.File.Exists(imagePath))
                 {
                     System.IO.File.Delete(imagePath);
                 }
+
+                // Delete the record from the database
                 data.Image_Tours.DeleteOnSubmit(image);
+                data.SubmitChanges();
             }
 
-            data.Tours.DeleteOnSubmit(t);
-            data.SubmitChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("XoaHinhAnh",new { id = tourId });
         }
     }
 }

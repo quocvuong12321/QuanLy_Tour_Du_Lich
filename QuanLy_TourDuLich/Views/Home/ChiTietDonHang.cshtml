@@ -61,15 +61,15 @@
                 </tr>
                 <tr>
                     <td>Tổng tiền</td>
-                    <td>
-                        @{ 
+                    <td class="text-danger">
+                        @{
 
                             foreach (ChiTiet_DatTour item in ct)
                             {
                                 tam = tam + item.SoNguoiDat.Value * item.Tour.Gia.Value;
                             }
                         }
-                        @tam
+                        @String.Format("{0:0,00}", tam) đ
                     </td>
                 </tr>
                 <tr>
