@@ -248,5 +248,25 @@ namespace QuanLy_TourDuLich.Controllers
             List<ChiTiet_DatTour> ds = data.ChiTiet_DatTours.Where(t => t.DatTour_id == id).ToList();
             return View(ds);
         }
+        public ActionResult DanhGiaTour(int id)
+        {
+            KhachHang kh = (KhachHang)Session["kh"];
+            Tour to = data.Tours.First(t => t.id == id);
+            return View(to);
+        }
+        [HttpPost]
+        public ActionResult DanhGiaTour(FormCollection f, int id)
+        {
+            KhachHang kh = (KhachHang)Session["kh"];
+            Tour to = data.Tours.First(t => t.id == id);
+            DanhGia d = new DanhGia();
+            d.User_id = kh.id;
+            d.Tour_id = to.id;
+            d.NoiDung = f["NoiDung"];
+            d.Vote = int.Parse(f["Vote"]);
+            data.DanhGias.InsertOnSubmit(d);
+            data.SubmitChanges();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
