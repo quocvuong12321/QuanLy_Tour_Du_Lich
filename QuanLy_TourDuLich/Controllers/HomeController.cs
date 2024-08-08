@@ -322,23 +322,29 @@ namespace QuanLy_TourDuLich.Controllers
             return View();
         }
 
-        public ActionResult KQTimKiem(DateTime? ngaykh, string mucgia, string noikh) 
+        public ActionResult KQTimKiem(DateTime? ngaykh, string mucgia, string noikh, string ltour)
         {
+            // Set a breakpoint on the next line to check if this method is called
             var query = data.Tours.AsQueryable();
+
             if (ngaykh.HasValue)
             {
                 query = query.Where(t => t.NgayKhoiHanh == ngaykh);
             }
+
             if (!string.IsNullOrEmpty(noikh))
             {
                 switch (noikh)
                 {
-                    case "1": query = query.Where(t => t.DiemKhoiHanh.Contains("Hà Nội"));
+                    case "1":
+                        query = query.Where(t => t.DiemKhoiHanh.Contains("Hà Nội"));
                         break;
-                    case "2": query = query.Where(t => t.DiemKhoiHanh.Contains("Hồ Chí Minh"));
+                    case "2":
+                        query = query.Where(t => t.DiemKhoiHanh.Contains("Hồ Chí Minh"));
                         break;
                 }
             }
+
             if (!string.IsNullOrEmpty(mucgia))
             {
                 switch (mucgia)
@@ -366,24 +372,43 @@ namespace QuanLy_TourDuLich.Controllers
                         break;
                 }
             }
+
+            if (!string.IsNullOrEmpty(ltour))
+            {
+                switch (ltour)
+                {
+                    case "1":
+                        query = query.Where(t => t.Loai_Tour_id == 1);
+                        break;
+                    case "2":
+                        query = query.Where(t => t.Loai_Tour_id == 2);
+                        break;
+                }
+            }
+
             var kq = query.ToList();
-            List<Tour> lst = new List<Tour>();
+
+            // Calculate discounted prices
             int[] gia = new int[kq.Count];
             for (int i = 0; i < kq.Count; i++)
             {
-                if (kq[i].Gia >= km.GiaTriKhuyenMaiTu)
+                if (km != null && kq[i].Gia >= km.GiaTriKhuyenMaiTu)
                 {
-                    gia[i] = (int)(kq[i].Gia - (1.0 * kq[i].Gia * km.GiaTriKhuyenMai / 100));
+                    gia[i] = (int)(kq[i].Gia - (kq[i].Gia * km.GiaTriKhuyenMai / 100));
                 }
                 else
                 {
-                    gia[i] = 0;
+                    gia[i] = (int)kq[i].Gia;  // Use original price if no discount
                 }
-                lst.Add(kq[i]);
             }
+
             ViewBag.GiaSauKM = gia;
+
             return View("Index", kq);
         }
+
+
+
         public ActionResult XemDG(int id)
         {
             return PartialView(data.DanhGias.Where(t => t.Tour_id == id).ToList());
