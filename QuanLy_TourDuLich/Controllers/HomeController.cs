@@ -63,6 +63,7 @@ namespace QuanLy_TourDuLich.Controllers
             return View();
         }
 
+
         //Chức năng tìm kiếm thường
         public ActionResult TimKiem(string search)
         {
