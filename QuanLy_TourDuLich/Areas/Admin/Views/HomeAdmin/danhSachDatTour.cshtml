@@ -27,10 +27,14 @@
                     <td>@item.GhiChu</td>
                     <td>
                         @if (item.id_TrangThai == 1)
-                {
-                    <a class="btn btn-danger" href="~/Admin/HomeAdmin/XacNhanDDH/@item.id">Nhấn để xác nhận</a> <span>|</span>
-                }
-                    <a href="~/Admin/HomeAdmin/ChiTietDatTour.@item.id">Chi Tiết</a>
+                        {
+                            <a class="btn btn-danger" href="~/Admin/HomeAdmin/XacNhanDDH/@item.id">Nhấn để xác nhận</a> <span>|</span>
+                        }
+                        @if (item.id_TrangThai == 2)
+                        {
+                            <a class="btn btn-warning" href="~/Admin/HomeAdmin/HuyDDH/@item.id">Nhấn để hủy</a> <span>|</span>
+                        }
+                        <a href="~/Admin/HomeAdmin/ChiTietDatTour.@item.id">Chi Tiết</a>
                     </td>
                 </tr>
             }

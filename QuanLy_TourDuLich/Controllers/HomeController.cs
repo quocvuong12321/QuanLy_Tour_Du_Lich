@@ -26,7 +26,7 @@ namespace QuanLy_TourDuLich.Controllers
 
         public ActionResult Index()
         {
-            var tours = data.Tours.ToList();
+            var tours = data.Tours.Where(t=>t.SoLuongCon!=0).ToList();
             List<Tour> lst = new List<Tour>();
             int[] gia = new int[tours.Count];
             for(int i = 0; i < tours.Count; i++)
