@@ -53,6 +53,8 @@ namespace QuanLy_TourDuLich.Controllers
         //Chi tiết tour
         public ActionResult ChiTietTour(int id)
         {
+            var danhgia = data.DanhGias.Where(f => f.Tour_id == id).ToList();
+            ViewBag.DanhgiaCount = danhgia.Count;
             ViewBag.HienThiAnh = data.Image_Tours.Where(t => t.Tour_id == id).ToList();
             return View(data.Tours.FirstOrDefault(t => t.id == id));
         }
@@ -381,6 +383,16 @@ namespace QuanLy_TourDuLich.Controllers
             }
             ViewBag.GiaSauKM = gia;
             return View("Index", kq);
+        }
+        public ActionResult XemDG(int id)
+        {
+            return PartialView(data.DanhGias.Where(t => t.Tour_id == id).ToList());
+        }
+        public ActionResult ChitietDG(int id)
+        {
+            Tour tentour = data.Tours.FirstOrDefault(t => t.id == id);
+            ViewBag.Tentour = tentour.Name;
+            return View(data.DanhGias.Where(t => t.Tour_id == id).ToList());
         }
     }
 }

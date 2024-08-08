@@ -1,0 +1,55 @@
+﻿@model IEnumerable<QuanLy_TourDuLich.Models.DanhGia>
+
+@{
+    ViewBag.Title = "Xem đánh giá";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<b style="font-size:45px; color:black">Đánh giá của tour: @ViewBag.Tentour</b>
+
+<table class="table">
+    <tr>
+        <th>
+            <label>Người dùng</label>
+        </th>
+        <th>
+            <label>Nội Dung</label>
+        </th>
+        <th>
+            <label>Rate</label>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.KhachHang.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tour.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoiDung)
+            </td>
+            <td>
+                @{
+                    if (item.Vote == 1)
+                    {
+                        <p>Tệ</p>
+                    }
+                    if (item.Vote == 2)
+                    {
+                        <p>Tạm ổn</p>
+                    }
+                    if (item.Vote == 3)
+                    {
+                        <p>Xuất sắc</p>
+                    }
+                }
+
+            </td>
+
+        </tr>
+    }
+</table>
