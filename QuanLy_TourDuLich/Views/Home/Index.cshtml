@@ -17,6 +17,42 @@
 }
 
 @*@if (Model != null)
+    {
+        <div class="container">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="card col-md-4 m-3" style="width:18rem">
+                        @Html.Action("AnhChoCard", "Home", new { id = item.id })
+                        <div class="card-body ">
+                            <a href="~/Home/ChiTietTour/@item.id" class="nav-link" style="font-size:20px;"><b>@Truncate(item.Name, 50)</b></a>
+                            <hr />
+                            <div style="">
+                                <p class="text-body">Khởi hành: @String.Format("{0:dd/MM/yyyy}", item.NgayKhoiHanh)</p>
+                                <p class="text-body">Số chỗ còn nhận: @item.SoLuongCon</p>
+                                <p class="text-body">@item.DiemKhoiHanh</p>
+                                <p class="text-body">Giá: <span class="text-danger">@String.Format("{0:0,00}", item.Gia) đ</span></p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="row" style="margin-top: 500px">
+                @Html.Action("HienThiFeedback","Home")
+            </div>
+        </div>
+    }*@
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-warning">
+        @ViewBag.Message
+    </div>
+    <div class="text-center" style="margin-top: 20px;">
+        <a href="@Url.Action("TimKiemNangCao", "Home")" class="btn btn-primary">Tìm kiếm lại</a>
+    </div>
+}
+else
 {
     <div class="container">
         <div class="row">
@@ -31,43 +67,19 @@
                             <p class="text-body">Khởi hành: @String.Format("{0:dd/MM/yyyy}", item.NgayKhoiHanh)</p>
                             <p class="text-body">Số chỗ còn nhận: @item.SoLuongCon</p>
                             <p class="text-body">@item.DiemKhoiHanh</p>
-                            <p class="text-body">Giá: <span class="text-danger">@String.Format("{0:0,00}", item.Gia) đ</span></p>
+                            @if (giasaukm[i] == 0)
+                            {
+                                <p class="text-body">Giá: <span class="text-danger">@String.Format("{0:0,00}", item.Gia) đ</span></p>
+                            }
+                            else
+                            {
+                                <p class="text-body">Giá: <span style="text-decoration:line-through;font-size:smaller">@String.Format("{0:0,00}", item.Gia) đ</span> <span class="text-danger">@String.Format("{0:0,00}", giasaukm[i]) đ</span></p>
+                            }
                         </div>
                     </div>
                 </div>
+                i++;
             }
         </div>
-        <div class="row" style="margin-top: 500px">
-            @Html.Action("HienThiFeedback","Home")
-        </div>
     </div>
-}*@
-
-<div class="container">
-    <div class="row">
-        @foreach (var item in Model)
-        {
-            <div class="card col-md-4 m-3" style="width:18rem">
-                @Html.Action("AnhChoCard", "Home", new { id = item.id })
-                <div class="card-body ">
-                    <a href="~/Home/ChiTietTour/@item.id" class="nav-link" style="font-size:20px;"><b>@Truncate(item.Name, 50)</b></a>
-                    <hr />
-                    <div style="">
-                        <p class="text-body">Khởi hành: @String.Format("{0:dd/MM/yyyy}", item.NgayKhoiHanh)</p>
-                        <p class="text-body">Số chỗ còn nhận: @item.SoLuongCon</p>
-                        <p class="text-body">@item.DiemKhoiHanh</p>
-                        @if (giasaukm[i] == 0)
-                        {
-                            <p class="text-body">Giá: <span class="text-danger">@String.Format("{0:0,00}", item.Gia) đ</span></p>
-                        }
-                        else
-                        {
-                            <p class="text-body">Giá: <span style="text-decoration:line-through;font-size:smaller">@String.Format("{0:0,00}", item.Gia) đ</span> <span class="text-danger">@String.Format("{0:0,00}", giasaukm[i]) đ</span></p>
-                        }
-                    </div>
-                </div>
-            </div>
-            i++;
-        }
-    </div>
-</div>
+}

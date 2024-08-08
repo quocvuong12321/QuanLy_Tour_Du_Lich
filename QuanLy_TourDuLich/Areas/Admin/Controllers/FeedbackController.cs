@@ -26,6 +26,20 @@ namespace QuanLy_TourDuLich.Areas.Admin.Controllers
             data.SubmitChanges();
             return RedirectToAction("Index");
         }
+        public ActionResult DanhGia(int? tourId)
+        {
+            var danhGias = data.DanhGias.AsQueryable();
+
+            if (tourId.HasValue && tourId.Value > 0)
+            {
+                danhGias = danhGias.Where(dg => dg.Tour_id == tourId.Value);
+            }
+
+            var tours = data.Tours.ToList();
+            ViewBag.Tours = new SelectList(tours, "Id", "Name", tourId);
+
+            return View(danhGias.ToList()); 
+        }
     }
 }
     

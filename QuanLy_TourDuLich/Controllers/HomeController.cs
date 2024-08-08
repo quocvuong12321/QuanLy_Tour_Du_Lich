@@ -324,14 +324,13 @@ namespace QuanLy_TourDuLich.Controllers
 
         public ActionResult KQTimKiem(DateTime? ngaykh, string mucgia, string noikh, string ltour)
         {
-            // Set a breakpoint on the next line to check if this method is called
+            
             var query = data.Tours.AsQueryable();
 
             if (ngaykh.HasValue)
             {
                 query = query.Where(t => t.NgayKhoiHanh == ngaykh);
             }
-
             if (!string.IsNullOrEmpty(noikh))
             {
                 switch (noikh)
@@ -344,7 +343,6 @@ namespace QuanLy_TourDuLich.Controllers
                         break;
                 }
             }
-
             if (!string.IsNullOrEmpty(mucgia))
             {
                 switch (mucgia)
@@ -372,7 +370,6 @@ namespace QuanLy_TourDuLich.Controllers
                         break;
                 }
             }
-
             if (!string.IsNullOrEmpty(ltour))
             {
                 switch (ltour)
@@ -385,10 +382,13 @@ namespace QuanLy_TourDuLich.Controllers
                         break;
                 }
             }
-
+            var check = query.ToList();
+            if (!check.Any())
+            {
+                ViewBag.Message = "Không tìm thấy tour nào.";
+                return View("Index"); 
+            }
             var kq = query.ToList();
-
-            // Calculate discounted prices
             int[] gia = new int[kq.Count];
             for (int i = 0; i < kq.Count; i++)
             {
@@ -398,16 +398,13 @@ namespace QuanLy_TourDuLich.Controllers
                 }
                 else
                 {
-                    gia[i] = (int)kq[i].Gia;  // Use original price if no discount
+                    gia[i] = (int)kq[i].Gia;
                 }
             }
-
             ViewBag.GiaSauKM = gia;
 
             return View("Index", kq);
         }
-
-
 
         public ActionResult XemDG(int id)
         {

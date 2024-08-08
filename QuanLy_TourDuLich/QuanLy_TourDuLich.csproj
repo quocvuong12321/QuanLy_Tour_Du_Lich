@@ -1324,6 +1324,7 @@
     <Content Include="Areas\Admin\Views\HomeAdmin\XoaHinhAnh.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\danhSachDatTour.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\ChiTietDatTour.cshtml" />
+    <Content Include="Areas\Admin\Views\Feedback\DanhGia.cshtml" />
     <None Include="Models\CSDL_QLTour.dbml.layout">
       <DependentUpon>CSDL_QLTour.dbml</DependentUpon>
     </None>
