@@ -11,23 +11,52 @@ namespace QuanLy_TourDuLich.Controllers
     {
         CSDL_QLTourDataContext data = new CSDL_QLTourDataContext();
         // GET: Home
+
+
+        //--------------------------- Phần khuyến mãi
+        private static KhuyenMai km = new KhuyenMai
+        {
+            id = 1,
+            Name = "Giảm 10% cho tour trên 10 triệu",
+            GiaTriKhuyenMai = 10,
+            GiaTriKhuyenMaiTu = 10000000
+        };
+
+        //---------------------------
+
         public ActionResult Index()
         {
-
-            return View(data.Tours.Where(t=>t.SoLuongCon!=0).ToList());
+            var tours = data.Tours.ToList();
+            List<Tour> lst = new List<Tour>();
+            int[] gia = new int[tours.Count];
+            for(int i = 0; i < tours.Count; i++)
+            {
+                if(tours[i].Gia >= km.GiaTriKhuyenMaiTu)
+                {
+                    gia[i] = (int)(tours[i].Gia - (1.0*tours[i].Gia*km.GiaTriKhuyenMai/100));
+                }
+                else
+                {
+                    gia[i] = 0;
+                }
+                lst.Add(tours[i]);
+            }
+            ViewBag.GiaSauKM = gia;
+            return View(lst);
         }
+
         //Lấy 1 ảnh ra để hiện thị lên indexx
         public ActionResult AnhChoCard(int id) {
             var imgs_tour = data.Image_Tours.OrderBy(a=>a.Name).Where(t => t.Tour_id == id).Take(1).ToList();
-            
             return PartialView(imgs_tour);
         }
-
+        //Chi tiết tour
         public ActionResult ChiTietTour(int id)
         {
             ViewBag.HienThiAnh = data.Image_Tours.Where(t => t.Tour_id == id).ToList();
             return View(data.Tours.FirstOrDefault(t => t.id == id));
         }
+
 
         public ActionResult GioiThieu()
         {
@@ -37,11 +66,22 @@ namespace QuanLy_TourDuLich.Controllers
         //Chức năng tìm kiếm thường
         public ActionResult TimKiem(string search)
         {
-            var result = data.Tours.Where(t => t.Name.Contains(search) || t.MoTa.Contains(search)).ToList();
-            if (result == null)
+            var result = data.Tours.Where(t => t.Name.Contains(search) ).ToList();
+            List<Tour> lst = new List<Tour>();
+            int[] gia = new int[result.Count];
+            for (int i = 0; i < result.Count; i++)
             {
-                ViewBag.kq = "Không tìm thấy: " + search;
+                if (result[i].Gia >= km.GiaTriKhuyenMaiTu)
+                {
+                    gia[i] = (int)(result[i].Gia - (1.0 * result[i].Gia * km.GiaTriKhuyenMai / 100));
+                }
+                else
+                {
+                    gia[i] = 0;
+                }
+                lst.Add(result[i]);
             }
+            ViewBag.GiaSauKM = gia;
             return View("Index", result);
         }
         
@@ -61,7 +101,6 @@ namespace QuanLy_TourDuLich.Controllers
                 return RedirectToAction("ThemGioHang", new { DiemXuatPhat, SoNguoiDat, id });
             return RedirectToAction("Dat1SanPham", new { DiemXuatPhat, SoNguoiDat, id });
         }
-
 
         public ActionResult Dat1SanPham(string DiemXuatPhat, int SoNguoiDat, int id)
         {
@@ -325,8 +364,22 @@ namespace QuanLy_TourDuLich.Controllers
                 }
             }
             var kq = query.ToList();
+            List<Tour> lst = new List<Tour>();
+            int[] gia = new int[kq.Count];
+            for (int i = 0; i < kq.Count; i++)
+            {
+                if (kq[i].Gia >= km.GiaTriKhuyenMaiTu)
+                {
+                    gia[i] = (int)(kq[i].Gia - (1.0 * kq[i].Gia * km.GiaTriKhuyenMai / 100));
+                }
+                else
+                {
+                    gia[i] = 0;
+                }
+                lst.Add(kq[i]);
+            }
+            ViewBag.GiaSauKM = gia;
             return View("Index", kq);
         }
-
     }
 }

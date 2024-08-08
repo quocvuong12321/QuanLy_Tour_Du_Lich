@@ -1261,6 +1261,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CSDL_QLTour.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\KhuyenMai.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
