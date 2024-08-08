@@ -25,12 +25,10 @@
                             <td>@item.Tour_id</td>
                             <td>@item.Tour.Name</td>
                             <td>@item.SoNguoiDat</td>
-<<<<<<< HEAD
                             <td>@item.DiemXuatPhat</td>
-                            <td>@item.Tour.Gia</td>
+                            <td>@String.Format("{0:0,00}", item.Tour.Gia) đ</td>
                             <td class="text-danger">@String.Format("{0:0,00}",(item.SoNguoiDat * item.Tour.Gia)) đ</td>
-=======
->>>>>>> a40aa8f31742a7e36bcf16dbbd9f61536a57fd61
+
                             <td>
                                 <a href="/Home/DanhGiaTour/@item.Tour_id"><button class="btn btn-primary" type="button">Đánh giá tour</button></a>
                             </td>
