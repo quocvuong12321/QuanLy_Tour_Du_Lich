@@ -11,8 +11,8 @@ namespace QuanLy_TourDuLich.Controllers
         // GET: ThanhToan
         CSDL_QLTourDataContext data = new CSDL_QLTourDataContext();
 
-        [HttpPost]
-        public ActionResult XacNhanThanhToan(int id, int tongtien, FormCollection f)
+        
+        public ActionResult XacNhanThanhToan(int id, int tongtien)
         {
             if (ModelState.IsValid)
             {
