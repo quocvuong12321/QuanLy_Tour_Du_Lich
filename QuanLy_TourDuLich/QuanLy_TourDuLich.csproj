@@ -1321,6 +1321,8 @@
     <Content Include="Views\Home\SoLuongGioHang.cshtml" />
     <Content Include="Views\Home\XemGioHang.cshtml" />
     <Content Include="Views\Home\HienThiFeedback.cshtml" />
+    <Content Include="Views\Home\ChitietDG.cshtml" />
+    <Content Include="Views\Home\XemDG.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

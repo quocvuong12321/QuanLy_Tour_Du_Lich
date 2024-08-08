@@ -26,6 +26,8 @@ namespace QuanLy_TourDuLich.Controllers
         public ActionResult ChiTietTour(int id)
         {
             ViewBag.HienThiAnh = data.Image_Tours.Where(t => t.Tour_id == id).ToList();
+            var danhgia = data.DanhGias.Where(f => f.Tour_id == id).ToList();
+            ViewBag.DanhgiaCount = danhgia.Count;
             return View(data.Tours.FirstOrDefault(t => t.id == id));
         }
 
@@ -272,6 +274,14 @@ namespace QuanLy_TourDuLich.Controllers
         public ActionResult HienThiFeedback()
         {
             return PartialView(data.Feedbacks.ToList());
+        }
+        public ActionResult XemDG(int id)
+        {
+            return PartialView(data.DanhGias.Where(t=> t.Tour_id==id).ToList());
+        }
+        public ActionResult ChitietDG(int id)
+        {
+            return View(data.DanhGias.Where(t => t.id == id).ToList());
         }
 
     }

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<QuanLy_TourDuLich.Models.DanhGia>
+
+
+<table class="table">
+@foreach (var item in Model.Take(3)) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.KhachHang.Name)
+        </td>
+        <td>
+            @{
+                if (item.Vote == 1)
+                {
+                    <p>Tệ</p>
+                }
+                if (item.Vote == 2)
+                {
+                    <p>Tạm ổn</p>
+                }
+                if (item.Vote == 3)
+                {
+                    <p>Xuất sắc</p>
+                }
+            }
+
+        </td>
+    </tr>
+}
+
+</table>
