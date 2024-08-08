@@ -120,6 +120,7 @@
     <Content Include="css\style.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
+    <Content Include="img\abc1.jpg" />
     <Content Include="img\Anh01.jpg" />
     <Content Include="img\Anh02.jpg" />
     <Content Include="img\Anh03.jpg" />
@@ -128,6 +129,8 @@
     <Content Include="img\Anh06.jpg" />
     <Content Include="img\Anh07.jpg" />
     <Content Include="img\bg.jpg" />
+    <Content Include="img\BMT01.jpg" />
+    <Content Include="img\BMT02.jpg" />
     <Content Include="img\booking.jpg" />
     <Content Include="img\CD01.jpg" />
     <Content Include="img\CD02.jpg" />
@@ -135,11 +138,19 @@
     <Content Include="img\CD04.jpg" />
     <Content Include="img\CD05.jpg" />
     <Content Include="img\CD06.jpg" />
+    <Content Include="img\CT01.jpg" />
+    <Content Include="img\CT02.jpg" />
+    <Content Include="img\CT03.jpg" />
+    <Content Include="img\D01.jpg" />
+    <Content Include="img\D02.jpg" />
+    <Content Include="img\D03.jpg" />
     <Content Include="img\DL01.jpg" />
     <Content Include="img\DL02.jpg" />
     <Content Include="img\DL03.jpg" />
     <Content Include="img\DL04.jpg" />
     <Content Include="img\DL05.jpg" />
+    <Content Include="img\DL06.jpg" />
+    <Content Include="img\DL07.jpg" />
     <Content Include="img\DN01.jpg" />
     <Content Include="img\DN02.jpg" />
     <Content Include="img\DN03.jpg" />
@@ -149,6 +160,15 @@
     <Content Include="img\DN07.jpg" />
     <Content Include="img\DN08.jpg" />
     <Content Include="img\DN09.jpg" />
+    <Content Include="img\DongBac01.jpg" />
+    <Content Include="img\DongBac02.jpg" />
+    <Content Include="img\DongBac03.jpg" />
+    <Content Include="img\DongBac04.jpg" />
+    <Content Include="img\DongBac05.jpg" />
+    <Content Include="img\DongBac06.jpg" />
+    <Content Include="img\DongBac07.jpg" />
+    <Content Include="img\DongBac08.jpg" />
+    <Content Include="img\DongBac09.jpg" />
     <Content Include="img\favicon.png" />
     <Content Include="img\fb2.jpg" />
     <Content Include="img\fb3.jpg" />
@@ -159,6 +179,9 @@
     <Content Include="img\HL04.jpg" />
     <Content Include="img\HL05.jpg" />
     <Content Include="img\HL06.jpg" />
+    <Content Include="img\HN01.jpg" />
+    <Content Include="img\HN02.jpg" />
+    <Content Include="img\HN03.jpg" />
     <Content Include="img\HQ01.jpg" />
     <Content Include="img\HQ02.jpg" />
     <Content Include="img\HQ03.jpg" />
@@ -172,6 +195,7 @@
     <Content Include="img\M04.jpg" />
     <Content Include="img\M05.jpg" />
     <Content Include="img\M06.jpg" />
+    <Content Include="img\NhaTrang01.jpg" />
     <Content Include="img\NT01.jpg" />
     <Content Include="img\NT02.jpg" />
     <Content Include="img\NT03.jpg" />
@@ -187,15 +211,23 @@
     <Content Include="img\PhuQuoc06.jpg" />
     <Content Include="img\PhuQuoc07.jpg" />
     <Content Include="img\PhuQuoc08.jpg" />
+    <Content Include="img\QN01.jpg" />
     <Content Include="img\TB01.jpg" />
     <Content Include="img\TB02.jpg" />
     <Content Include="img\TB03.jpg" />
+    <Content Include="img\TH01.jpg" />
+    <Content Include="img\TH02.jpg" />
+    <Content Include="img\TH03.jpg" />
+    <Content Include="img\TH04.jpg" />
     <Content Include="img\ThaiLan01.jpg" />
     <Content Include="img\ThaiLan02.jpg" />
     <Content Include="img\ThaiLan03.jpg" />
     <Content Include="img\ThaiLan04.jpg" />
     <Content Include="img\ThaiLan05.jpg" />
     <Content Include="img\ThaiLan06.jpg" />
+    <Content Include="img\ThaiLan07.jpg" />
+    <Content Include="img\ThaiLan08.jpg" />
+    <Content Include="img\ThanhToan.jpg" />
     <Content Include="img\TN01.jpg" />
     <Content Include="img\TN02.jpg" />
     <Content Include="img\TN03.jpg" />
@@ -211,6 +243,9 @@
     <Content Include="img\TS03.jpg" />
     <Content Include="img\TS04.jpg" />
     <Content Include="img\TS05.jpg" />
+    <Content Include="img\U01.jpg" />
+    <Content Include="img\U02.jpg" />
+    <Content Include="img\U03.jpg" />
     <Content Include="js\main.js" />
     <Content Include="lib\animate\animate.css" />
     <Content Include="lib\animate\animate.min.css" />
@@ -1217,6 +1252,7 @@
     <Compile Include="Areas\Admin\Controllers\QLUserController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ThanhToanController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1285,6 +1321,8 @@
     <Content Include="Areas\Admin\Views\Feedback\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\EditHinhAnhTour.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\XoaHinhAnh.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\danhSachDatTour.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\ChiTietDatTour.cshtml" />
     <None Include="Models\CSDL_QLTour.dbml.layout">
       <DependentUpon>CSDL_QLTour.dbml</DependentUpon>
     </None>
@@ -1321,8 +1359,13 @@
     <Content Include="Views\Home\SoLuongGioHang.cshtml" />
     <Content Include="Views\Home\XemGioHang.cshtml" />
     <Content Include="Views\Home\HienThiFeedback.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Home\ChitietDG.cshtml" />
     <Content Include="Views\Home\XemDG.cshtml" />
+=======
+    <Content Include="Views\ThanhToan\TTThanhCong.cshtml" />
+    <Content Include="Views\Home\TimKiemNangCao.cshtml" />
+>>>>>>> 9eca13a062061bc46e399acacdf04d93b786c545
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

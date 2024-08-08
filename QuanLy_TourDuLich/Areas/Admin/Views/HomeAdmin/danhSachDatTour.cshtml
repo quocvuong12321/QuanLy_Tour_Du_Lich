@@ -1,0 +1,38 @@
+﻿@model List<QuanLy_TourDuLich.Models.DatTour>
+@{
+    ViewBag.Title = "Danh sách đặt tour";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+
+<b style="font-size:45px; color:black">Danh sách đặt tour</b>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Mã đặt tour</th>
+        <th>Trạng thái</th>
+        <th>Mã khách hàng</th>
+        <th>Tên khách hàng</th>
+        <th>Ghi chú</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+                <tr>
+                    <td>@item.id</td>
+                    <td>
+                        @item.TrangThai.TenTrangThai
+                    </td>
+                    <td>@item.User_id</td>
+                    <td>@item.KhachHang.Name</td>
+                    <td>@item.GhiChu</td>
+                    <td>
+                        @if (item.id_TrangThai == 1)
+                {
+                    <a class="btn btn-danger" href="~/Admin/HomeAdmin/XacNhanDDH/@item.id">Nhấn để xác nhận</a> <span>|</span>
+                }
+                    <a href="~/Admin/HomeAdmin/ChiTietDatTour.@item.id">Chi Tiết</a>
+                    </td>
+                </tr>
+            }
+</table>
+

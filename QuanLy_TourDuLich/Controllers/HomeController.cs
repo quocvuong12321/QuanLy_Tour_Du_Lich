@@ -117,7 +117,8 @@ namespace QuanLy_TourDuLich.Controllers
             dt.GhiChu = f["GhiChu"];
        
             data.SubmitChanges();
-            return RedirectToAction("Index"); /////////////////////////////// Thay Index bằng thanh toán để đi tới trang thanh toán
+            return RedirectToAction("XacNhanThanhToan", "ThanhToan" ,new { id = dt.id, tongtien = f["tongtien"] });
+            /////////////////////////////// Thay Index bằng thanh toán để đi tới trang thanh toán
         }
 
         public ActionResult ThemGioHang(string DiemXuatPhat, int SoNguoiDat, int id)
@@ -282,6 +283,59 @@ namespace QuanLy_TourDuLich.Controllers
         public ActionResult ChitietDG(int id)
         {
             return View(data.DanhGias.Where(t => t.id == id).ToList());
+        }
+
+        public ActionResult TimKiemNangCao()
+        {
+            return View();
+        }
+
+        public ActionResult KQTimKiem(DateTime? ngaykh, string mucgia, string noikh) 
+        {
+            var query = data.Tours.AsQueryable();
+            if (ngaykh.HasValue)
+            {
+                query = query.Where(t => t.NgayKhoiHanh == ngaykh);
+            }
+            if (!string.IsNullOrEmpty(noikh))
+            {
+                switch (noikh)
+                {
+                    case "1": query = query.Where(t => t.DiemKhoiHanh.Contains("Hà Nội"));
+                        break;
+                    case "2": query = query.Where(t => t.DiemKhoiHanh.Contains("Hồ Chí Minh"));
+                        break;
+                }
+            }
+            if (!string.IsNullOrEmpty(mucgia))
+            {
+                switch (mucgia)
+                {
+                    case "1":
+                        query = query.Where(t => t.Gia < 2000000);
+                        break;
+                    case "2":
+                        query = query.Where(t => t.Gia >= 2000000 && t.Gia <= 4000000);
+                        break;
+                    case "3":
+                        query = query.Where(t => t.Gia >= 4000000 && t.Gia <= 6000000);
+                        break;
+                    case "4":
+                        query = query.Where(t => t.Gia >= 6000000 && t.Gia <= 10000000);
+                        break;
+                    case "5":
+                        query = query.Where(t => t.Gia >= 10000000 && t.Gia <= 20000000);
+                        break;
+                    case "6":
+                        query = query.Where(t => t.Gia >= 20000000 && t.Gia <= 50000000);
+                        break;
+                    case "7":
+                        query = query.Where(t => t.Gia > 50000000);
+                        break;
+                }
+            }
+            var kq = query.ToList();
+            return View("Index", kq);
         }
 
     }
