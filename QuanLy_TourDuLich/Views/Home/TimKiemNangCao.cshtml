@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "TimKiemNangCao";
+}
+
+<div class="container col-md-5">
+<form action="~/Home/KQTimKiem" method="get">
+    <input type="date" name="ngaykh" value=""  class="form-control" style="margin:10px 0 10px 0"  placeholder="Ngày khởi hành"/>
+    <select class="form-select" name="noikh" style="margin:10px 0 10px 0">
+        <option value="1">Hà Nội</option>
+        <option value="2">Tp. Hồ Chí Minh</option>
+    </select>
+    <select style="margin:10px 0 10px 0" name="mucgia" class="form-select">
+        <option selected>Chọn giá tour</option>
+        <option value="1">Dưới 2tr</option>
+        <option value="2">Từ 2tr - 4tr</option>
+        <option value="3">Từ 4tr - 6tr</option>
+        <option value="4">Từ 6tr - 10tr</option>
+        <option value="5">Từ 10tr - 20tr</option>
+        <option value="6">Từ 20tr - 50tr</option>
+        <option value="7">Trên 50tr</option>
+    </select>
+    <input style="margin:10px 0 10px 0" type="submit"  class="btn btn-primary"/>
+</form>
+</div>

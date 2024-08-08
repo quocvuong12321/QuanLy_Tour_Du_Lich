@@ -188,5 +188,27 @@ namespace QuanLy_TourDuLich.Areas.Admin.Controllers
 
             return RedirectToAction("XoaHinhAnh",new { id = tourId });
         }
+
+        public ActionResult danhSachDatTour()
+        {
+            var lst = data.DatTours.ToList();
+            return View(lst);
+        }
+
+        public ActionResult XacNhanDDH(int id)
+        {
+            DatTour ddh = data.DatTours.FirstOrDefault(t => t.id == id);
+            ddh.id_TrangThai = 2;
+            data.SubmitChanges();
+            return RedirectToAction("danhSachDatTour");
+        }
+
+        public ActionResult ChiTietDatTour(int id)
+        {
+            List<ChiTiet_DatTour> ctdt = data.ChiTiet_DatTours.Where(t => t.DatTour_id == id).ToList();
+            ViewBag.MaDT = id;
+            return View(ctdt);
+        }
+       
     }
 }

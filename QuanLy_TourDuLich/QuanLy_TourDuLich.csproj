@@ -196,6 +196,7 @@
     <Content Include="img\ThaiLan04.jpg" />
     <Content Include="img\ThaiLan05.jpg" />
     <Content Include="img\ThaiLan06.jpg" />
+    <Content Include="img\ThanhToan.jpg" />
     <Content Include="img\TN01.jpg" />
     <Content Include="img\TN02.jpg" />
     <Content Include="img\TN03.jpg" />
@@ -1217,6 +1218,7 @@
     <Compile Include="Areas\Admin\Controllers\QLUserController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ThanhToanController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1285,6 +1287,8 @@
     <Content Include="Areas\Admin\Views\Feedback\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\EditHinhAnhTour.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\XoaHinhAnh.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\danhSachDatTour.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\ChiTietDatTour.cshtml" />
     <None Include="Models\CSDL_QLTour.dbml.layout">
       <DependentUpon>CSDL_QLTour.dbml</DependentUpon>
     </None>
@@ -1321,6 +1325,8 @@
     <Content Include="Views\Home\SoLuongGioHang.cshtml" />
     <Content Include="Views\Home\XemGioHang.cshtml" />
     <Content Include="Views\Home\HienThiFeedback.cshtml" />
+    <Content Include="Views\ThanhToan\TTThanhCong.cshtml" />
+    <Content Include="Views\Home\TimKiemNangCao.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

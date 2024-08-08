@@ -9,7 +9,7 @@
 @model DatTour
 
 <div class="container" style="width:60%">
-    <form action="/Home/ChiTietDonHang/@Model.id" method="post" class="table table-bordered">
+    <form action="/ThanhToan/XacNhanThanhToan/@Model.id" method="post" class="table table-bordered">
         <table class="table" style="table-layout:fixed">
             <tbody>
                 <tr>
@@ -28,7 +28,7 @@
                     <td colspan="2">
                         <table class="table" style="table-layout:fixed">
                             <tr>
-                                <td colspan="2" class="text-center">Tour đã chọn</td>
+                                <td colspan="2" class="text-center"><b>Tour đã chọn</b></td>
                             </tr>
                             <tr>
                                 <td colspan="2">
@@ -61,17 +61,10 @@
                 </tr>
                 <tr>
                     <td>Tổng tiền</td>
-<<<<<<< HEAD
                     <td class="text-danger">
-=======
-                    <td>
->>>>>>> a40aa8f31742a7e36bcf16dbbd9f61536a57fd61
-                        @{
-
-                            foreach (ChiTiet_DatTour item in ct)
-                            {
-                                tam = tam + item.SoNguoiDat.Value * item.Tour.Gia.Value;
-                            }
+                        @foreach (ChiTiet_DatTour item in ct)
+                        {
+                            tam = tam + item.SoNguoiDat.Value * item.Tour.Gia.Value;
                         }
                         @String.Format("{0:0,00}", tam) đ
                     </td>
@@ -80,6 +73,7 @@
                     <td>Ghi chú</td>
                     <td><textarea name="GhiChu">Ghi chú</textarea></td>
                 </tr>
+                <input type="hidden" name="tongtien" value="@tam" />
                 <tr><td colspan="2" class="text-center"><button class="btn btn-primary" type="submit">Thanh toán</button></td></tr>
             </tbody>
         </table>
