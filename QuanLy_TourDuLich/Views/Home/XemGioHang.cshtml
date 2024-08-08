@@ -29,13 +29,10 @@
                                 <td>@item.Tour.Name</td>
                                 <td><input type="number" value="@item.SoNguoiDat" min="1" max="@item.Tour.SoLuongCon" name="SoLuong" style="width:100%" /></td>
                                 <td><input type="text" name="DiemXuatPhat" value="@item.DiemXuatPhat" style="width:100%" /></td>
-<<<<<<< HEAD
+
                                 <td class="text-danger">@String.Format("{0:0,00}", item.Tour.Gia) đ</td>
                                 <td class="text-danger">@String.Format("{0:0,00}", (item.SoNguoiDat * item.Tour.Gia)) đ</td>
-=======
-                                <td>@String.Format("{0:0,00}", item.Tour.Gia) đ</td>
-                                <td>@String.Format("{0:0,00}", (item.SoNguoiDat * item.Tour.Gia)) đ</td>
->>>>>>> a40aa8f31742a7e36bcf16dbbd9f61536a57fd61
+
                                 <td>
                                     <button class="btn btn-primary"><a href="/Home/DeleteChiTietDH/@item.id" style="color: white">Xóa</a></button> |
                                     <button type="submit" class="btn btn-primary">Sửa</button>
