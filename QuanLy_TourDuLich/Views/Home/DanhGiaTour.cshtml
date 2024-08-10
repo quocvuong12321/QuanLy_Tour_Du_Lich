@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "DanhGiaTour";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+@using QuanLy_TourDuLich.Models
+@model Tour
+
+<h2 class="text-center">Đánh giá</h2>
+<div class="container" style="width:60%">
+    <form action="/Home/DanhGiaTour/@Model.id" method="post">
+        <table class="table">
+            <tr>
+                <td>Tên tour: </td>
+                <td>@Model.Name</td>
+            </tr>
+            <tr>
+                <td>Mã tour: </td>
+                <td>@Model.id</td>
+            </tr>
+            <tr>
+                <td class="justify-content-between">
+                    <label><b>Đánh giá của bạn</b></label>                    
+                </td>
+                <td>
+                    <input type="radio" name="Vote" value="1" /><label>Tệ</label><br />
+                    <input type="radio" name="Vote" value="2" checked /><label>Tạm ổn</label><br />
+                    <input type="radio" name="Vote" value="3" /><label>Xuất xắc</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>Nhận xét của bạn</b>
+                </td>
+                <td>
+                    <textarea placeholder="Nhận xét" name="NoiDung" style="width:100%">  </textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-center"><button type="submit" class="btn btn-primary">Đánh giá</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+

@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "ChiTietDonHang";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+    List<ChiTiet_DatTour> ct = ViewBag.ct;
+    int tam = 0;
+}
+@using QuanLy_TourDuLich.Models
+@model DatTour
+
+<div class="container" style="width:60%">
+    <form action="/Home/ChiTietDonHang/@Model.id" method="post" class="table table-bordered">
+        <table class="table" style="table-layout:fixed">
+            <tbody>
+                <tr>
+                    <td>Mã hóa đơn</td>
+                    <td>@Model.id</td>
+                </tr>
+                <tr>
+                    <td>Họ tên</td>
+                    <td>@Model.KhachHang.Name</td>
+                </tr>
+                <tr>
+                    <td>Số điện thoại</td>
+                    <td>@Model.KhachHang.DienThoai</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <table class="table" style="table-layout:fixed">
+                            <tr>
+                                <td colspan="2" class="text-center"><b>Tour đã chọn</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+
+                                    @foreach (var item in ct)
+                                    {
+                                        <table class="table table-light" style="table-layout:fixed">
+                                            <tr style="border-top-color:black">
+                                                <td>Tên tour</td>
+                                                <td>@item.Tour.Name</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Số người đặt</td>
+                                                <td>@item.SoNguoiDat</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Điểm xuất phát</td>
+                                                <td>@item.DiemXuatPhat</td>
+                                            </tr>
+                                        </table>
+                                    }
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Trạng thái</td>
+                    <td>@Model.TrangThai.TenTrangThai</td>
+                </tr>
+                <tr>
+                    <td>Tổng tiền</td>
+                    <td class="text-danger">
+                        @foreach (ChiTiet_DatTour item in ct)
+                        {
+                            tam = tam + item.SoNguoiDat.Value * item.Tour.Gia.Value;
+                        }
+                        @String.Format("{0:0,00}", tam) đ
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ghi chú</td>
+                    <td><textarea name="GhiChu">  </textarea></td>
+                </tr>
+                <input type="hidden" name="tongtien" value="@tam" />
+                <tr><td colspan="2" class="text-center"><button class="btn btn-primary" type="submit">Thanh toán</button></td></tr>
+            </tbody>
+        </table>
+    </form>
+
+</div>
+

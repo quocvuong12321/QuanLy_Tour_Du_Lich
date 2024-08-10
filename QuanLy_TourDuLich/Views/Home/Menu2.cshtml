@@ -1,0 +1,13 @@
+﻿@model List<QuanLy_TourDuLich.Models.Tour>
+
+
+      <ul class="dropdown-menu">
+    @foreach (var item in Model)
+{
+    <li class="" style=" list-style:none"><a class=" text-danger nav-item nav-link" href="~/Home/LocTourThemDiemDen/@item.DiemDen">@item.DiemDen</a></li>
+}
+</ul>
+
+
+
+

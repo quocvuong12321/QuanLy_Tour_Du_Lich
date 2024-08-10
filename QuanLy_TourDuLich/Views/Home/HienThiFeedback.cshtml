@@ -1,0 +1,15 @@
+﻿
+@model List<QuanLy_TourDuLich.Models.Feedback>
+
+
+<div class="row">
+    <h3 class="text-center">FEEDBACK</h3>
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 " style="border:2px solid gray;border-radius:5px;" >
+            <b style="font-size:larger">@item.TieuDe</b>
+            <p>@item.NoiDung</p>
+            <p>@String.Format("{0:dd/MM/yyyy}", item.NgayPhanHoi)</p>
+        </div>
+    }
+</div>

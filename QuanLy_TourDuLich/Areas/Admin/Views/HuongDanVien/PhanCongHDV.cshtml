@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "Phân công";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+    List<PhanCong_HuongDanVien> pc = ViewBag.pc;
+}
+@using QuanLy_TourDuLich.Models
+@model List<Tour>
+
+<b style="font-size:45px; color:black">Phân công hướng dẫn viên</b>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            <label>Loại tour</label>
+        </th>
+        <th>
+            <label>Tên</label>
+        </th>
+        <th>
+            <label>Điểm khởi hành</label>
+        </th>
+        <th>
+            <label>Điểm đến</label>
+        </th>
+
+        <th>
+            <label>Ngày khởi hành</label>
+        </th>
+        <th>
+            <label>Ngày kết thúc</label>
+        </th>
+        <th>
+            <label>Hướng dẫn viên</label>
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Loai_Tour.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiemKhoiHanh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiemDen)
+            </td>
+            <td>
+                @String.Format("{0:dd/MM/yyyy}",item.NgayKhoiHanh)
+            </td>
+            <td>
+                @String.Format("{0:dd/MM/yyyy}", item.NgayKetThuc)
+            </td>
+            <td>
+                @{
+                    int date = 0;
+                    foreach (var i in pc)
+                    {
+                        if (i.Tour_id == item.id)
+                        {
+                            date++;
+                        }
+                    }
+                    if (date == 0)
+                    {
+                        <p>Chưa có</p>
+                    }
+                    else
+                    {
+                        foreach (var i in pc)
+                        {
+                            <p>
+                                @{
+                                    if (i.Tour_id == item.id)
+                                    {
+                                        @i.HuongDanVien.Fullname
+                                    }
+                                }
+                            </p>
+                        }
+                    }
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Phân công", "PhanCong", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
+

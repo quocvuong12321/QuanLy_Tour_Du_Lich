@@ -1,0 +1,55 @@
+﻿
+@{
+    Layout = "";
+}
+<title>Đăng nhập</title>
+<link href="~/img/favicon.png" rel="icon">
+
+<link href="~/css/form_Login.css" rel="stylesheet" />
+<div class="hero">
+    <div class="form-box">
+        <div class="button-box">
+            <div id="btn"></div>
+            <button type="button" class="toggle-btn" onclick="login()" style="font-size:11px">Đăng nhập</button>
+            <button type="button" class="toggle-btn" onclick="register()" style="font-size:11px">Đăng ký</button>
+        </div>
+        <form id="login" action="~/Account/DangNhapKhachHang" method="post" class="input-group">
+            <input type="text" class="input-field" name="TenDangNhap" placeholder="Email hoặc số điện thoại" required>
+            <input type="password" class="input-field" name="MatKhau" placeholder="Mật khẩu" required>
+            @if (!string.IsNullOrEmpty(ViewBag.Login))
+            {
+                <div style="color:red">@ViewBag.Login*</div>
+            }
+            <input type="checkbox" class="check-box"><span>Remember Password</span>
+            <button type="submit" class="submit-btn">Đăng nhập</button>
+        </form>
+        <form id="register" action="/Account/DangKy" method="post" class="input-group">
+            <input type="number" name="Role_id" value="2" class="input-field" hidden />
+            <input type="text" name="Name" placeholder="Họ và tên" class="input-field" required />
+            <input type="email" placeholder="Email" name="Email" class="input-field" required />
+            <input type="text" name="DienThoai" placeholder="Số điện thoại" class="input-field" />
+            <input type="text" name="DiaChi" placeholder="Địa chỉ" class="input-field" />
+            <input type="password" name="Password" placeholder="Mật khẩu" class="input-field" />
+            <input class="check-box" type="radio" name="GioiTinh" value="nam" />Nam
+            <input class="check-box" type="radio" name="GioiTinh" value="nữ" />Nữ
+            <button type="submit" class="submit-btn">Đăng ký</button>
+        </form>
+    </div>
+</div>
+<script>
+    var x = document.getElementById("login");
+    var y = document.getElementById("register");
+    var z = document.getElementById("btn");
+
+    function register() {
+        x.style.left = "-400px";
+        y.style.left = "50px";
+        z.style.left = "110px";
+    }
+
+    function login() {
+        x.style.left = "50px";
+        y.style.left = "450px";
+        z.style.left = "0";
+    }
+</script>

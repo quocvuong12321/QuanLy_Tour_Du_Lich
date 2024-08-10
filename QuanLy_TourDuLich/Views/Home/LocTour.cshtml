@@ -1,0 +1,16 @@
+﻿@model List<QuanLy_TourDuLich.Models.Loai_Tour>
+
+<div class="dropdown">
+    <ul class="nav flex-column">
+        @foreach (var item in Model)
+        {
+            <li class="nav-item dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <b style="font-size:x-large">@item.Name</b>
+                </button>
+                    @Html.Action("Menu2", "Home", new { id = item.id })
+            </li>
+        }
+    </ul>
+</div>
+

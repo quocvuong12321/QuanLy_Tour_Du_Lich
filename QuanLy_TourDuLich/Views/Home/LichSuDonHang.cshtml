@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "LichSuDonHang";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+
+    List<ChiTiet_DatTour> ct = ViewBag.ct;
+    List<ChiTiet_DatTour> c = new List<ChiTiet_DatTour>();
+}
+@using QuanLy_TourDuLich.Models
+@model List<DatTour>
+<b style="font-size:45px; color:black">Lịch sử đơn hàng</b>
+
+<table class="table container">
+    <tr>
+        <th>Mã đơn hàng</th>
+        <th>Tour</th>
+        <th>Ghi chú</th>
+        <th>Trang thái</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @{
+        if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                c = ct.Where(t => t.DatTour_id == item.id).ToList();
+                <tr>
+                    <td>@item.id</td>
+                    <td>
+                        <ul>
+                            @foreach (var i in c)
+                            {
+                                <li>@i.Tour.Name</li>
+                            }
+                        </ul>
+                    </td>
+                    <td>@item.GhiChu</td>
+                    <td>@item.TrangThai.TenTrangThai</td>
+                    <td>
+                        @{
+                            if (item.id_TrangThai == 1)
+                            {
+                                <a href="/Home/HuyDonHang/@item.id"><button type="submit" class="btn btn-danger">Hủy đơn hàng</button></a>
+                            }
+                        }
+                    </td>
+                    <td><a href="/Home/ChiTietDonDatHang/@item.id"><button type="submit" class="btn btn-primary">Đánh giá đơn hàng</button></a></td>
+                </tr>
+            }
+        }
+    }
+</table>
+

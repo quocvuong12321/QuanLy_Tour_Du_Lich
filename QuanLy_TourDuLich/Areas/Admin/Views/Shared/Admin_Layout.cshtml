@@ -1,0 +1,55 @@
+﻿@using QuanLy_TourDuLich.Models;
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/img/favicon.png" rel="icon">
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/admin.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+
+
+</head>
+<body>
+    <header class="header">
+        <div class="logo"><h3 class="text-primary m-0"><i class="fa fa-map-marker-alt me-3"></i>Tourist Admin</h3></div>
+        <div class="nav-links">
+            <div class="dropdown">
+                <button class="dropdown-toggle">
+                    @if (Session["ql"] != null)
+                    {
+                        var ss = Session["ql"] as KhachHang;
+                        <p><i class="fa fa-user" aria-hidden="true"></i>@ss.Name</p>
+                    }
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="~/Home/Index">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="~/Admin/HuongDanVien/Index">Quản lý Hướng dẫn viên</a>
+        <a href="~/Admin/HomeAdmin/Index">Quản lý Tour</a>
+        <a href="~/Admin/HuongDanVien/PhanCongHDV">Quản lý Bookings</a>
+        <a href="~/Admin/QLUser/Index">Quản lý người dùng</a>
+        <a href="~/Admin/HomeAdmin/danhSachDatTour">Quản lý đặt tour</a>
+        <a href="~/Admin/Feedback/Index">Phản hồi</a>
+        <a href="~/Admin/ThongKe/Index">Thống kê</a>
+    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        @RenderBody()
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; Quản Lý Du Lịch</p>
+    </div>
+    <script src="~/plugin/ckeditor/ckeditor.js"></script>
+    @RenderSection("TourJS", false)
+    @RenderSection("script", false);
+</body>
+</html>

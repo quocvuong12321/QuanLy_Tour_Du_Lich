@@ -1,0 +1,95 @@
+﻿@model IEnumerable<QuanLy_TourDuLich.Models.DanhGia>
+
+@{
+    ViewBag.Title = "Danh sách đánh giá";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+
+<b style="font-size:45px; color:black">Đánh giá</b>
+
+@using (Html.BeginForm("DanhGia", "Feedback", FormMethod.Get))
+{
+    <div class="form-group" style="display: flex; align-items: center;">
+        <label for="TourId" style="margin-right: 10px;">Chọn Tour</label>
+
+        <!-- Custom Dropdown Styling -->
+        @Html.DropDownList("tourId", (SelectList)ViewBag.Tours, "Chọn tour", new { @class = "form-select", @style = "width: 300px; margin-right: 10px;" })
+        <!-- Custom Button Styling -->
+        <button type="submit" class="btn btn-success rounded-btn" style="font-size:17px">Lọc</button>
+    </div>
+}
+
+@using (Html.BeginForm("DeleteSelected", "Feedback", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tên người dùng</th>
+                <th>Tour</th>
+                <th>Nội dung</th>
+                <th>Đánh giá</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.KhachHang.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Tour.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.NoiDung)</td>
+                    <td>
+                        @{
+                            switch (item.Vote)
+                            {
+                                case 1: <p>Tệ</p>; break;
+                                case 2: <p>Tạm ổn</p>; break;
+                                case 3: <p>Xuất sắc</p>; break;
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<style>
+
+
+
+    .custom-dropdown {
+        position: relative;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-color: #E9ECEF; 
+        border: 1px solid #ced4da;
+        padding: 8px 30px 8px 12px;
+        font-size: 14px;
+        line-height: 1.5;
+        width: 100%;
+        box-sizing: border-box;
+        background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%236c757d" d="M2 0L0 2h4z"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 12px;
+    }
+
+        .custom-dropdown::-ms-expand {
+            display: none;
+        }
+        .custom-dropdown:focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+</style>
+<script>
+    var xoa = function (id) {
+        if (confirm("Bạn có chắc chắn muốn xóa không?")) {
+            location.href = "FeedBack/Delete/" + id;
+        }
+    }
+</script>

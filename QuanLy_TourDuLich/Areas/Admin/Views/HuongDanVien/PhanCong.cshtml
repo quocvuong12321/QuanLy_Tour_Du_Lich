@@ -1,0 +1,82 @@
+﻿@model IEnumerable<QuanLy_TourDuLich.Models.HuongDanVien>
+@using QuanLy_TourDuLich.Models
+@{
+    ViewBag.Title = "PhanCong";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+    List<PhanCong_HuongDanVien> pc = ViewBag.pc;
+    List<PhanCong_HuongDanVien> pc2 = ViewBag.pc2;
+    Tour to = ViewBag.tour;
+}
+
+<h2>Phân công cho tour: @to.Name</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Họ và tên
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            Địa chỉ
+        </th>
+        <th>
+            Điện thoại
+        </th>
+        <th>
+            Giới tính
+        </th>
+        <th>
+            Trạng thái
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Fullname)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DiaChi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DienThoai)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.GioiTinh)
+    </td>
+
+    @{
+        PhanCong_HuongDanVien p = pc.Where(t => t.HuongDanVien_id == item.id).FirstOrDefault();
+        PhanCong_HuongDanVien p2 = pc2.Where(t => t.HuongDanVien_id == item.id).FirstOrDefault();
+        if (p == null && p2 == null)
+        {
+            <td style="color: chartreuse">Chưa phân công</td>
+            <td>@Html.ActionLink("Thêm", "ThemPhanCong", new { tid = to.id, hdvid = item.id })</td>
+        }
+        else
+        {
+            if (p2 != null)
+            {
+                <td style="color: red">Đang bận</td>
+                <td></td>
+            }
+            else
+            {
+                <td style="color:aqua">Đã phân công</td>
+                <td>@Html.ActionLink("Xóa", "XoaPhanCong", new { tid = p.Tour_id, hdvid = item.id })</td>
+            }
+        }
+    }
+
+</tr>
+}
+
+</table>
+
+<a href="~/Admin/HuongDanVien/PhanCongHDV">Trở về</a>

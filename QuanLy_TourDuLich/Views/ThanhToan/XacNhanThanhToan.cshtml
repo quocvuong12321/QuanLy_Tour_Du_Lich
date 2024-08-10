@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "XacNhanThanhToan";
+}
+
+<div class="col-md-6 container text-center" >
+    <form action="/ThanhToan/TTThanhCong" method="post">
+        <input type="hidden" name="id" value="@ViewBag.id" />
+        <input type="hidden" name="tongtien" value="@ViewBag.tongtien" />
+        <h3 class="text-center">Thanh toán</h3>
+        <img src="~/img/ThanhToan.jpg" class="w-75" />
+        <br />
+        <input type="submit" value="Xác nhận" style="margin:25px 0  0 0" class="btn btn-danger" />
+    </form>
+</div>
+

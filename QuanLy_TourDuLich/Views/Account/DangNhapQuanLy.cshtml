@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = "";
+}
+<title>Đăng nhập quản lý</title>
+<link href="~/img/favicon.png" rel="icon">
+
+<link href="~/css/form_Login.css" rel="stylesheet" />
+
+
+<div class="hero">
+    <div class="form-box">
+        <form id="login" action="~/Account/DangNhapQuanLy" method="post" class="input-group">
+            <h2 style="text-align:center;">Đăng nhập quản lý</h2>
+            <input type="text" class="input-field" name="TenDangNhap" placeholder="Email hoặc số điện thoại" required>
+            <input type="password" class="input-field" name="MatKhau" placeholder="Mật khẩu" required>
+            @if (!string.IsNullOrEmpty(ViewBag.LoginQL))
+            {
+                <p style="color:red">@ViewBag.LoginQL*</p>
+            }
+            <input type="checkbox" class="check-box"><span>Remember Password</span>
+            <button type="submit" class="submit-btn">Đăng nhập</button>
+        </form>
+    </div>
+</div>

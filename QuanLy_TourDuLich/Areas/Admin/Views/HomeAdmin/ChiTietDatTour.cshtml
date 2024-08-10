@@ -1,0 +1,29 @@
+﻿@model List<QuanLy_TourDuLich.Models.ChiTiet_DatTour>
+@{
+    ViewBag.Title = "ChiTietDatTour";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+
+<b style="font-size:45px; color:black">Chi tiết đặt tour</b>
+<strong>Mã đặt tour: @ViewBag.Madt</strong>
+<table class="table table-bordered">
+    <tr>
+        <th>Mã tour</th>
+        <th>Tên Tour</th>
+        <th>Điểm xuất phát</th>
+        <th>Ngày khởi hành</th>
+        <th>Ngày kết thúc</th>
+    </tr>
+    @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.Tour_id</td>
+                    <td>@item.Tour.Name</td>
+                    <td>@item.Tour.DiemKhoiHanh</td>
+                    <td>@item.Tour.NgayKhoiHanh</td>
+                    <td>@item.Tour.NgayKetThuc</td>
+                </tr>
+            }
+</table>
+<a href="~/Admin/HomeAdmin/danhSachDatTour" class="btn btn-primary">Trở về</a>
+
